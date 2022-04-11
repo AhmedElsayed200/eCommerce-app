@@ -1,10 +1,10 @@
 import "./App.css";
-import CategoriesNavBar from "./Components/Categories Nav Bar/CategoriesNavBar"
+import NavBar from "./Components/Nav Bar/NavBar";
 
 function App() {
   return (
     <div className="App">
-      <CategoriesNavBar />
+      <NavBar />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./CartNavBar.css";
-import shoppingCart from "../../../public/images/shopping-cart.png";
+import shoppingCart from "../../images/shopping-cart.png";;
 
 class CartNavBar extends React.Component {
   render() {
