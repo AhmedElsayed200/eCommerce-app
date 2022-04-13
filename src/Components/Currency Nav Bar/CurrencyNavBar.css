@@ -1,0 +1,4 @@
+#currencyNavBar {
+  display: inline-block;
+  grid-column-start: 5;
+}

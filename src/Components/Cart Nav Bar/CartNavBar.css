@@ -1,0 +1,4 @@
+#shoppingCart {
+  display: inline-block;
+  grid-column-start: 6;
+}

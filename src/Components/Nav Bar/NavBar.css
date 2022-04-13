@@ -1,0 +1,28 @@
+nav {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  width: 100%;
+  height: 40px;
+  /* background-color: aqua; */
+}
+
+#currencyCartContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  text-align: center;
+  align-items: center;
+  column-gap: 10px;
+  height: 100%;
+  /* background-color: brown; */
+}
+
+div#webLogoContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  height: 100%;
+}
+
+img#webLogo {
+  margin: auto;
+}
