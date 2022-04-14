@@ -1,7 +1,7 @@
 import React from "react";
 import "./CurrencyNavBar.css";
+import { CURRENCIES_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
-import { GET_CURRENCIES } from "../../GraphQL/quries";
 
 class CurrencyNavBar extends React.Component {
   constructor() {
@@ -9,13 +9,13 @@ class CurrencyNavBar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = (e) => {
-    this.props.selectCurrency(e.target.id);
+  handleClick = (currSymbol, indx, e) => {
+    this.props.selectCurrency(currSymbol, indx);
   };
 
   render() {
     return (
-      <Query query={GET_CURRENCIES}>
+      <Query query={CURRENCIES_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error! ${error.message}</p>;
@@ -24,10 +24,10 @@ class CurrencyNavBar extends React.Component {
 
           return (
             <div id="currDropdownContainer">
-              <button id="currButton">{this.props.currency}</button>
+              <button id="currButton">{this.props.currency.symbol}</button>
               <div id="currDropdownContent">
                 {currencies.map((currency, i) => (
-                  <p key={i} onClick={this.handleClick} id={currency.symbol}>
+                  <p key={i} onClick={(e) => this.handleClick(currency.symbol, i, e)}>
                     {currency.symbol} {currency.label}
                   </p>
                 ))}

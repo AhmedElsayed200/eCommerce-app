@@ -1,6 +1,6 @@
 import React from "react";
 import "./CategoriesNavBar.css";
-import { GET_CATEGORIES } from "../../GraphQL/quries";
+import { CATEGORIES_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
 class CategoriesNavBar extends React.Component {
@@ -11,12 +11,13 @@ class CategoriesNavBar extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      const allEleCateg = document.getElementById("all");
-      allEleCateg.classList.add("categ-active");
+      const allEleCateg = document.getElementsByClassName("categ-item");
+      const firstCateg = allEleCateg[0];
+      firstCateg.classList.add("categ-active");
     }, 100);
   }
 
-  handleSelection(e) {
+  handleSelection(categName, e) {
     const categElements = document.getElementsByClassName("categ-item");
     const selectedCateg = e.target;
     for (let ele of categElements) {
@@ -24,12 +25,12 @@ class CategoriesNavBar extends React.Component {
         ele.classList.remove("categ-active");
     }
     selectedCateg.classList.add("categ-active");
-    this.props.selectCategory(selectedCateg.id);
+    this.props.selectCategory(categName);
   }
 
   render() {
     return (
-      <Query query={GET_CATEGORIES}>
+      <Query query={CATEGORIES_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error! ${error.message}</p>;
@@ -41,9 +42,8 @@ class CategoriesNavBar extends React.Component {
               {categories.map((category, i) => (
                 <li
                   key={i}
-                  id={`${category.name}`}
                   className="categ-item"
-                  onClick={this.handleSelection}
+                  onClick={(e) => this.handleSelection(category.name, e)}
                 >
                   {category.name.toUpperCase()}
                 </li>
