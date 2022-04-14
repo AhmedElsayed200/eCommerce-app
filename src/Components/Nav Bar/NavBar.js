@@ -6,9 +6,9 @@ import CurrencyNavBar from "../Currency Nav Bar/CurrencyNavBar";
 import CartNavBar from "../Cart Nav Bar/CartNavBar";
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //   constructor(props) {
+  //     super(props);
+  //   }
   render() {
     return (
       <nav>
@@ -17,7 +17,10 @@ class NavBar extends React.Component {
           <img src={webLogo} alt="website logo" id="webLogo" />
         </div>
         <div id="currencyCartContainer">
-          <CurrencyNavBar />
+          <CurrencyNavBar
+            selectCurrency={this.props.selectCurrency}
+            currency={this.props.currency}
+          />
           <CartNavBar />
         </div>
       </nav>

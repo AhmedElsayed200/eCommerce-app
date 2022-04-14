@@ -1,4 +1,37 @@
-#currencyNavBar {
+#currDropdownContainer {
   display: inline-block;
   grid-column-start: 5;
+}
+
+#currButton {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+#currDropdownContainer:hover #currDropdownContent {
+  display: block;
+}
+
+#currDropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  width: 114px;
+  filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+  z-index: 1;
+}
+
+#currDropdownContent p {
+  float: none;
+  text-align: center;
+  margin: 20px 0px 20px 20px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
 }

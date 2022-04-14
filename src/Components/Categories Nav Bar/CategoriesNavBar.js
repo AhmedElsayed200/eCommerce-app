@@ -4,9 +4,16 @@ import { GET_CATEGORIES } from "../../GraphQL/quries";
 import { Query } from "@apollo/client/react/components";
 
 class CategoriesNavBar extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleSelection = this.handleSelection.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      const allEleCateg = document.getElementById("all");
+      allEleCateg.classList.add("categ-active");
+    }, 100);
   }
 
   handleSelection(e) {
