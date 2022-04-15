@@ -1,7 +1,7 @@
 import React from "react";
 import "./MainPage.css";
 import NavBar from "../Nav Bar/NavBar";
-import PLD from "../Category Page/PLD";
+import PLD from "../Category Page/PLP";
 
 class MainPage extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ class MainPage extends React.Component {
     this.setState({ currency: { symbol: currencySymbol, index: indx } });
   };
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div id="mainPage">
         <NavBar
