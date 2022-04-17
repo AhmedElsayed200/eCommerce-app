@@ -6,9 +6,6 @@ import CurrencyNavBar from "../Currency Nav Bar/CurrencyNavBar";
 import CartNavBar from "../Cart Nav Bar/CartNavBar";
 
 class NavBar extends React.Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
   render() {
     return (
       <nav>

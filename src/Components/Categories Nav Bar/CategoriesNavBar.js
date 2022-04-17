@@ -14,7 +14,7 @@ class CategoriesNavBar extends React.Component {
       const allEleCateg = document.getElementsByClassName("categ-item");
       const firstCateg = allEleCateg[0];
       firstCateg.classList.add("categ-active");
-    }, 100);
+    }, 300);
   }
 
   handleSelection(categName, e) {

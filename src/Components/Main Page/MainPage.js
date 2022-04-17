@@ -1,25 +1,33 @@
 import React from "react";
 import "./MainPage.css";
 import NavBar from "../Nav Bar/NavBar";
-import PLD from "../Category Page/PLP";
+import PLP from "../Category Page/PLP";
 
 class MainPage extends React.Component {
   constructor() {
     super();
     this.state = {
       category: { title: "all" },
+      diffCategory: false,
       currency: { symbol: "$", index: 0 },
     };
     this.selectCategory = this.selectCategory.bind(this);
+    this.selectCurrency = this.selectCurrency.bind(this);
+    this.changeDiffCategory = this.changeDiffCategory.bind(this);
   }
   selectCategory = (category) => {
+    if (this.state.category.title === category)
+      this.setState({ diffCategory: false });
+    else this.setState({ diffCategory: true });
     this.setState({ category: { title: category } });
   };
   selectCurrency = (currencySymbol, indx) => {
     this.setState({ currency: { symbol: currencySymbol, index: indx } });
   };
+  changeDiffCategory = () => {
+    this.setState({ diffCategory: false });
+  }
   render() {
-    // console.log(this.state);
     return (
       <div id="mainPage">
         <NavBar
@@ -27,9 +35,11 @@ class MainPage extends React.Component {
           selectCurrency={this.selectCurrency}
           currency={this.state.currency}
         />
-        <PLD
+        <PLP
           category={this.state.category}
           currencyIndex={this.state.currency.index}
+          diffCategory={this.state.diffCategory}
+          changeDiffCategory={this.changeDiffCategory}
         />
       </div>
     );

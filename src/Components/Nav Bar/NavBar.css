@@ -5,11 +5,12 @@ nav {
 }
 
 #currencyCartContainer {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  text-align: center;
+  display: flex;
+  /* grid-template-columns: repeat(6, 1fr);
+  text-align: center; */
+  justify-content: end;
   align-items: center;
-  height: 100%;
+  /* height: 100%; */
 }
 
 div#webLogoContainer {

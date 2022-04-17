@@ -1,8 +1,8 @@
 #mainPage {
   display: grid;
   grid-template-columns: 90%;
-  grid-template-rows: auto auto;
+  grid-template-rows: 10vh 90vh;
   justify-content: center;
-  row-gap: 10px;
+  /* row-gap: 10px; */
   height: 100%;
 }

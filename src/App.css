@@ -3,5 +3,9 @@
 }
 
 .App {
-  height: 90vh;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
 }

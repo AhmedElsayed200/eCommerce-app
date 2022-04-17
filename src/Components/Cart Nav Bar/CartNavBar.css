@@ -1,4 +1,3 @@
 #shoppingCart {
-  display: inline-block;
-  grid-column-start: 6;
+  margin-right: 5%;
 }
