@@ -50,7 +50,7 @@ class PLP extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const { products } = data.category;
-
+          console.log(products);
           let start, end;
           if (this.props.diffCategory) {
             start = 0;
@@ -67,11 +67,22 @@ class PLP extends React.Component {
             productsList.push(
               <div key={products[i].id} className="product-container">
                 <div className="product-img-container">
-                  <img
-                    className="product-img"
-                    src={products[i].gallery[0]}
-                    alt={products[i].name}
-                  ></img>
+                  {products[i].inStock ? (
+                    <img
+                      className="product-img"
+                      src={products[i].gallery[0]}
+                      alt={products[i].name}
+                    ></img>
+                  ) : (
+                    <>
+                      <img
+                        className="product-img out-of-stock-img"
+                        src={products[i].gallery[0]}
+                        alt={products[i].name}
+                      ></img>
+                      <p className="out-of-stock-text">OUT OF STOCK</p>
+                    </>
+                  )}
                 </div>
                 <div className="product-content">
                   <p className="product-name-brand">
