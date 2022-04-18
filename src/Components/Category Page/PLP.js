@@ -38,7 +38,8 @@ class PLP extends React.Component {
   render() {
     let productsList = [];
     let showProducts = [];
-    const lastIndx = 5;
+    const lastIndx = 5,
+      categName = this.props.category.title;
     return (
       <Query
         query={PRODUCTS_PER_GATEGORY_QUERY}
@@ -90,21 +91,26 @@ class PLP extends React.Component {
           showProducts = [...productsList];
           productsList = [];
           let allProdLength = products.length;
+
           return (
             <div id="categContainer">
+              <p className="categName">
+                {categName.charAt(0).toUpperCase() + categName.slice(1)}
+                {" Category"}
+              </p>
               {showProducts.map((product) => product)}
               <div id="changePageBut">
                 <button
                   className="prev-page-but"
                   onClick={(e) => this.handlePageChange(allProdLength, e)}
                 >
-                  {"<"}
+                  {"Previous"}
                 </button>
                 <button
                   className="next-page-but"
                   onClick={(e) => this.handlePageChange(allProdLength, e)}
                 >
-                  {">"}
+                  {"Next"}
                 </button>
               </div>
             </div>
