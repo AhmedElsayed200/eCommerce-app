@@ -1,0 +1,103 @@
+/* attribute containers */
+.prod-att-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background-color: RGB(20, 20, 20, 0.7);
+}
+
+.prod-att-container {
+  position: relative;
+  background-color: #ffffff;
+  width: 200px;
+  min-width: 20%;
+  height: 250px;
+  border: 1px solid #a6a6a6;
+  border-radius: 30px 10px 30px 10px;
+  padding: 1%;
+}
+
+.prod-att {
+  margin-bottom: 6%;
+  width: 100%;
+  height: 20%;
+}
+
+/* attribute name*/
+.att-name,
+.no-att-lbl {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.no-att-lbl {
+  justify-content: center;
+}
+
+/* attribute value*/
+.radio-input {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.att-val-span {
+  display: inline-flex;
+  width: 18%;
+  height: 60%;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+  background-color: #ffffff;
+  border: 1px solid #a6a6a6;
+  cursor: pointer;
+  font-size: 90%;
+}
+
+/* hover and check radio input*/
+input[type="radio"]:checked + .att-val-span {
+  background-color: #1d1f22;
+  color: #ffffff;
+}
+
+.att-val-span:hover {
+  border: 1px solid #1d1f22;
+}
+
+input[type="radio"]:checked + .prod-color {
+  border-radius: 20px;
+}
+
+/* popup attribute menu buttons */
+.back-btn,
+.submit-btn {
+  position: absolute;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 70%;
+}
+
+.back-btn:hover,
+.submit-btn:hover {
+  background-color: rgb(255, 252, 249);
+}
+
+.back-btn {
+  bottom: 10px;
+  left: 10px;
+}
+
+.submit-btn {
+  bottom: 10px;
+  right: 10px;
+}

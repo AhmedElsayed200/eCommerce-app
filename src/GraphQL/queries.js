@@ -29,7 +29,6 @@ query ProductsPerCategory($input: CategoryInput!){
       name
       inStock
       gallery
-      description
       prices{
         currency{
           label
@@ -44,7 +43,27 @@ query ProductsPerCategory($input: CategoryInput!){
 `;
 
 /* Product Description Page */
-export const GET_PRODUCT = gql`
+export const PRODUCT_ATT_QUERY = gql`
+  query ProductAtt($id: String!){
+    product(id: $id){
+        id
+        gallery   
+        attributes{ 
+          id 
+          name 
+          type 
+          items{ 
+            id
+            value
+            displayValue
+          } 
+        } 
+    }
+  }
+`;
+
+/* Product Description Page */
+export const PRODUCT_QUERY = gql`
   query Product($productId: ID!){
     product(id: $productId){
         id 

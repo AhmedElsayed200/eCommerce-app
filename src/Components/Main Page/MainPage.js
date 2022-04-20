@@ -2,6 +2,7 @@ import React from "react";
 import "./MainPage.css";
 import NavBar from "../Nav Bar/NavBar";
 import PLP from "../Category Page/PLP";
+import PopupAtt from "../Popup Attribute/PopupAtt";
 
 class MainPage extends React.Component {
   constructor() {
@@ -10,11 +11,17 @@ class MainPage extends React.Component {
       category: { title: "all" },
       diffCategory: false,
       currency: { symbol: "$", index: 0 },
+      showAtt: { id: "", show: false },
+      selectedAtt: [],
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectCurrency = this.selectCurrency.bind(this);
     this.changeDiffCategory = this.changeDiffCategory.bind(this);
+    this.addProdPLP = this.addProdPLP.bind(this);
+    this.addAtt = this.addAtt.bind(this);
+    this.closeAttMenu = this.closeAttMenu.bind(this);
   }
+
   selectCategory = (category) => {
     if (this.state.category.title === category)
       this.setState({ diffCategory: false });
@@ -27,6 +34,20 @@ class MainPage extends React.Component {
   changeDiffCategory = () => {
     this.setState({ diffCategory: false });
   }
+  addProdPLP = (id) => {
+    this.setState({ showAtt: { id: id, show: true } });
+  }
+  addAtt = (att) => {
+    const newAtt = att;
+    this.setState(prevState => ({
+      selectedAtt: [...prevState.selectedAtt, newAtt]
+    }))
+    console.log(this.state.selectedAtt)
+  }
+  closeAttMenu = () => {
+    this.setState({ showAtt: { id: "", show: false } });
+  }
+
   render() {
     return (
       <div id="mainPage">
@@ -40,7 +61,9 @@ class MainPage extends React.Component {
           currencyIndex={this.state.currency.index}
           diffCategory={this.state.diffCategory}
           changeDiffCategory={this.changeDiffCategory}
+          addProdPLP={this.addProdPLP}
         />
+        {this.state.showAtt.show ? <PopupAtt productID={this.state.showAtt.id} addAtt={this.addAtt} closeAttMenu={this.closeAttMenu} /> : null}
       </div>
     );
   }

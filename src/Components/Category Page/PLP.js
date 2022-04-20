@@ -1,5 +1,6 @@
 import React from "react";
 import "./PLP.css";
+import shoppingCart from "../../images/shopping-cart-white.png";
 import { PRODUCTS_PER_GATEGORY_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
@@ -10,6 +11,7 @@ class PLP extends React.Component {
       itemStart: 0,
     };
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handlePageChange = (pLength, e) => {
@@ -35,6 +37,10 @@ class PLP extends React.Component {
     this.props.changeDiffCategory();
   };
 
+  handleClick = (id, inStock, e) => {
+    if (inStock) this.props.addProdPLP(id);
+  };
+
   render() {
     let productsList = [];
     let showProducts = [];
@@ -50,7 +56,7 @@ class PLP extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const { products } = data.category;
-          console.log(products);
+
           let start, end;
           if (this.props.diffCategory) {
             start = 0;
@@ -96,9 +102,22 @@ class PLP extends React.Component {
                     {products[i].prices[this.props.currencyIndex].amount}
                   </p>
                 </div>
+                <button
+                  className="add-cart-butt-plp"
+                  onClick={(e) =>
+                    this.handleClick(products[i].id, products[i].inStock, e)
+                  }
+                >
+                  <img
+                    className="add-cart-img-plp"
+                    src={shoppingCart}
+                    alt="add product"
+                  />
+                </button>
               </div>
             );
           }
+
           showProducts = [...productsList];
           productsList = [];
           let allProdLength = products.length;
