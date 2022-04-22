@@ -8,6 +8,8 @@ li {
   padding: 20px 0px;
   margin-left: 5%;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 li.categ-active {

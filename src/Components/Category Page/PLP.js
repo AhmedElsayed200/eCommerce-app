@@ -11,7 +11,8 @@ class PLP extends React.Component {
       itemStart: 0,
     };
     this.handlePageChange = this.handlePageChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleShowAtt = this.handleShowAtt.bind(this);
+    this.handleShowProd = this.handleShowProd.bind(this);
   }
 
   handlePageChange = (pLength, e) => {
@@ -20,25 +21,29 @@ class PLP extends React.Component {
     const itemStart = this.state.itemStart;
     const nOfShownProd = 6;
     if (
-      clickedBut.className === "next-page-but" &&
+      clickedBut.className === "next-page-btn" &&
       productsLength <= itemStart
     ) {
       this.setState({ itemStart: 0 });
     } else if (
-      clickedBut.className === "next-page-but" &&
+      clickedBut.className === "next-page-btn" &&
       productsLength > itemStart + nOfShownProd
     ) {
       this.setState({ itemStart: itemStart + nOfShownProd });
     } else if (
-      clickedBut.className === "prev-page-but" &&
+      clickedBut.className === "prev-page-btn" &&
       itemStart - nOfShownProd >= 0
     )
       this.setState({ itemStart: itemStart - nOfShownProd });
     this.props.changeDiffCategory();
   };
 
-  handleClick = (id, inStock, e) => {
-    if (inStock) this.props.addProdPLP(id);
+  handleShowAtt = (id, inStock, e) => {
+    if (inStock) this.props.showAtt(id);
+  };
+
+  handleShowProd = (id, inStock, e) => {
+    if (inStock) this.props.showProd(id);
   };
 
   render() {
@@ -71,8 +76,20 @@ class PLP extends React.Component {
           // console.log(start, end, this.state.itemStart);
           for (let i = start; i <= end; ++i) {
             productsList.push(
-              <div key={products[i].id} className="product-container">
-                <div className="product-img-container">
+              <div
+                key={products[i].id}
+                className={
+                  products[i].inStock
+                    ? "product-container bef-buy-prod"
+                    : "product-container"
+                }
+              >
+                <div
+                  className="product-img-container"
+                  onClick={(e) => {
+                    this.handleShowProd(products[i].id, products[i].inStock, e);
+                  }}
+                >
                   {products[i].inStock ? (
                     <img
                       className="product-img"
@@ -103,9 +120,9 @@ class PLP extends React.Component {
                   </p>
                 </div>
                 <button
-                  className="add-cart-butt-plp"
+                  className="add-cart-btn-plp"
                   onClick={(e) =>
-                    this.handleClick(products[i].id, products[i].inStock, e)
+                    this.handleShowAtt(products[i].id, products[i].inStock, e)
                   }
                 >
                   <img
@@ -129,15 +146,15 @@ class PLP extends React.Component {
                 {" Category"}
               </p>
               {showProducts.map((product) => product)}
-              <div id="changePageBut">
+              <div id="changePageBtn">
                 <button
-                  className="prev-page-but"
+                  className="prev-page-btn"
                   onClick={(e) => this.handlePageChange(allProdLength, e)}
                 >
                   {"Previous"}
                 </button>
                 <button
-                  className="next-page-but"
+                  className="next-page-btn"
                   onClick={(e) => this.handlePageChange(allProdLength, e)}
                 >
                   {"Next"}

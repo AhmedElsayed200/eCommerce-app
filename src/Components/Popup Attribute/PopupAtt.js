@@ -28,7 +28,7 @@ class PopupAtt extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.resetAtt = this.resetAtt.bind(this);
     this.formValidation = this.formValidation.bind(this);
-    this.closeAttMenu = this.closeAttMenu.bind(this);
+    this.closePage = this.closePage.bind(this);
   }
 
   resetAtt = () => {
@@ -53,8 +53,8 @@ class PopupAtt extends React.Component {
     // console.log(this.state.attributes);
   };
 
-  closeAttMenu = (e) => {
-    this.props.closeAttMenu();
+  closePage = (e) => {
+    this.props.closePage();
   };
 
   handleSubmit = (e) => {
@@ -65,7 +65,7 @@ class PopupAtt extends React.Component {
       if (attState[att] !== "") selectedAtt[att] = attState[att];
     }
     if (this.formValidation()) {
-      this.props.addAtt(selectedAtt);
+      this.props.addProd(selectedAtt);
       this.resetAtt();
       alert("Product has been added to the Cart");
     } else {
@@ -82,14 +82,23 @@ class PopupAtt extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const productAtt = data.product;
-          console.log(productAtt);
+          // console.log(productAtt);
 
           return (
-            <form onSubmit={this.handleSubmit} className="prod-att-form">
-              <div className="prod-att-container">
+            <form
+              onSubmit={this.handleSubmit}
+              className={this.props.PDP ? "" : "prod-att-form"}
+            >
+              <div
+                className={
+                  this.props.PDP
+                    ? "prod-att-container-PDP"
+                    : "prod-att-container"
+                }
+              >
                 {productAtt.attributes.length ? null : (
                   <label className="no-att-lbl">
-                    There is not attributes for this product
+                    There is no attributes for this product
                   </label>
                 )}
                 {productAtt.attributes.map((att) => (
@@ -125,10 +134,10 @@ class PopupAtt extends React.Component {
                 ))}
                 <button
                   type="button"
-                  className="back-btn"
-                  onClick={this.closeAttMenu}
+                  className="close-btn"
+                  onClick={this.closePage}
                 >
-                  BACK
+                  CLOSE
                 </button>
                 <input
                   type="submit"

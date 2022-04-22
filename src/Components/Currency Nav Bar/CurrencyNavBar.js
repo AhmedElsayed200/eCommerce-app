@@ -24,7 +24,7 @@ class CurrencyNavBar extends React.Component {
 
           return (
             <div id="currDropdownContainer">
-              <button id="currButton">{this.props.currency.symbol}</button>
+              <button id="currBtn">{this.props.currency.symbol}</button>
               <div id="currDropdownContent">
                 {currencies.map((currency, i) => (
                   <p key={i} onClick={(e) => this.handleClick(currency.symbol, i, e)}>

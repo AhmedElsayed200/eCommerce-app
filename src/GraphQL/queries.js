@@ -64,8 +64,8 @@ export const PRODUCT_ATT_QUERY = gql`
 
 /* Product Description Page */
 export const PRODUCT_QUERY = gql`
-  query Product($productId: ID!){
-    product(id: $productId){
+  query Product($id: String!){
+    product(id: $id){
         id 
         name 
         inStock 
@@ -80,10 +80,11 @@ export const PRODUCT_QUERY = gql`
         } 
         } 
         prices{ 
-        currency{ 
-            label 
-        } 
-        amount 
+          currency{ 
+              label
+              symbol 
+          } 
+          amount 
         } 
         brand 
     }
