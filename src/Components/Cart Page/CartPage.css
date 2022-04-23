@@ -1,0 +1,150 @@
+.cart-page {
+  position: absolute;
+  top: 100vh;
+  width: 100%;
+  min-height: 90vh;
+  background-color: white;
+  font-size: 20px;
+}
+
+.cart-component {
+  width: 70%;
+  margin: auto;
+}
+
+.cart-name {
+  font-size: 200%;
+}
+
+.products-cart-container {
+  width: 100%;
+  height: 100%;
+}
+
+.prod-cart {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin-bottom: 5%;
+}
+
+.prod-info {
+  width: 40%;
+  float: left;
+}
+
+.name-brand-prod {
+  font-size: 100%;
+  margin-bottom: 5%;
+}
+
+.prod-price {
+  margin-bottom: 6%;
+  letter-spacing: 0.5px;
+  font-size: 80%;
+}
+
+.prod-att {
+  margin-bottom: 6%;
+  font-size: 110%;
+}
+
+.att-row-cart {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+.att-name-cart {
+  font-size: 110%;
+}
+
+.att-val-cart {
+  font-size: 90%;
+  font-weight: bold;
+  margin-left: 2%;
+}
+
+.prod-color-cart {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #a6a6a6;
+  cursor: pointer;
+}
+
+.img-cont {
+  width: 30%;
+  height: 100%;
+  float: right;
+  display: flex;
+  align-items: center;
+}
+
+.prod-img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
+
+.quantity-manip-btn {
+  display: flex;
+  float: right;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 200px;
+  width: 5%;
+}
+
+.inc-quantity-btn,
+.dec-quantity-btn,
+.remove-prod {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: none;
+  cursor: pointer;
+}
+
+.inc-quantity-btn,
+.dec-quantity-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 90%;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: rgba(94, 203, 123, 0.5);
+}
+
+.remove-prod {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70px;
+  height: 20px;
+  font-size: 80%;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: rgba(94, 203, 123, 1);
+}
+
+.inc-quantity-btn:hover,
+.dec-quantity-btn:hover {
+  background-color: rgba(94, 203, 123, 1);
+}
+
+.quantity-txt {
+  font-size: 120%;
+}
+
+.clear {
+  clear: both;
+}
+
+.tot-price {
+  font-size: 120%;
+  font-weight: bold;
+}

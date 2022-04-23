@@ -1,6 +1,6 @@
 import React from "react";
 import "./PDP.css";
-import PopupAtt from "../Popup Attribute/PopupAtt";
+import AttPage from "../Attribute Page/AttPage";
 import { PRODUCT_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
@@ -55,7 +55,7 @@ class PDP extends React.Component {
                       display: this.state.imgIndex === i ? "block" : "none",
                     }}
                   >
-                    <img src={img} alt="product img" className="prod-img" />
+                    <img src={img} alt={product.name} className="prod-img" />
                   </div>
                 ))}
                 <button
@@ -91,12 +91,13 @@ class PDP extends React.Component {
                     {product.brand}
                   </p>
                   <p className="prod-price">
-                    {product.prices[this.props.currencyIndex].currency.symbol}
-                    {product.prices[this.props.currencyIndex].amount}
+                    {product.prices[this.props.currency.index].currency.symbol}
+                    {product.prices[this.props.currency.index].amount}
                   </p>
                 </div>
-                <PopupAtt
+                <AttPage
                   productID={this.props.productID}
+                  currency={this.props.currency}
                   addProd={this.props.addProd}
                   closePage={this.props.closePage}
                   PDP={true}

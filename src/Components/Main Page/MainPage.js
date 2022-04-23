@@ -2,8 +2,9 @@ import React from "react";
 import "./MainPage.css";
 import NavBar from "../Nav Bar/NavBar";
 import PLP from "../Category Page/PLP";
-import PopupAtt from "../Popup Attribute/PopupAtt";
+import AttPage from "../Attribute Page/AttPage";
 import PDP from "../Product Page/PDP";
+import CartPage from "../Cart Page/CartPage";
 
 class MainPage extends React.Component {
   constructor() {
@@ -15,7 +16,8 @@ class MainPage extends React.Component {
       showAtt: { id: "", show: false },
       showProd: { id: "", show: false },
       diffProd: false,
-      selectedAtt: [],
+      showCart: true,
+      selectedProducts: [],
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectCurrency = this.selectCurrency.bind(this);
@@ -24,6 +26,8 @@ class MainPage extends React.Component {
     this.addProd = this.addProd.bind(this);
     this.closePage = this.closePage.bind(this);
     this.changeDiffProd = this.changeDiffProd.bind(this);
+    this.changeProdQuantity = this.changeProdQuantity.bind(this);
+    this.removeProd = this.removeProd.bind(this);
   }
 
   selectCategory = (category) => {
@@ -42,16 +46,17 @@ class MainPage extends React.Component {
   showAtt = (id) => {
     this.setState({ showAtt: { id: id, show: true } });
   };
-  addProd = (att) => {
-    const newAtt = att;
+  addProd = (prod) => {
+    const newProd = prod;
     this.setState((prevState) => ({
-      selectedAtt: [...prevState.selectedAtt, newAtt],
+      selectedProducts: [...prevState.selectedProducts, newProd],
     }));
-    console.log(this.state.selectedAtt);
+    console.log(this.state.selectedProducts);
   };
   closePage = () => {
     this.setState({ showAtt: { id: "", show: false } });
     this.setState({ showProd: { id: "", show: false } });
+    // this.setState({ showCart: false });
   };
   showProd = (id) => {
     if (this.state.showProd.id !== id) this.setState({ diffProd: true });
@@ -61,6 +66,27 @@ class MainPage extends React.Component {
   changeDiffProd = () => {
     this.setState({ diffProd: false });
   };
+  changeProdQuantity = (indx, val) => {
+    let selectedProducts = this.state.selectedProducts;
+    let product = selectedProducts[indx];
+    let newQuantity = product.quantity + val;
+    if (newQuantity !== 0) {
+      product.quantity = newQuantity;
+      selectedProducts[indx] = product;
+      this.setState({
+        ...this.state,
+        selectedProducts: selectedProducts,
+      });
+    }
+  };
+  removeProd = (indx) => {
+    let selectedProducts = this.state.selectedProducts;
+    selectedProducts.splice(indx, 1);
+    this.setState({
+      ...this.state,
+      selectedProducts: selectedProducts,
+    });
+  };
 
   render() {
     return (
@@ -69,6 +95,10 @@ class MainPage extends React.Component {
           selectCategory={this.selectCategory}
           selectCurrency={this.selectCurrency}
           currency={this.state.currency}
+          selectedProducts={this.state.selectedProducts}
+          changeProdQuantity={this.changeProdQuantity}
+          removeProd={this.removeProd}
+          noOfItems={this.state.selectedProducts.length}
         />
         <PLP
           category={this.state.category}
@@ -79,8 +109,9 @@ class MainPage extends React.Component {
           showProd={this.showProd}
         />
         {this.state.showAtt.show ? (
-          <PopupAtt
+          <AttPage
             productID={this.state.showAtt.id}
+            currency={this.state.currency}
             PDP={false}
             addProd={this.addProd}
             closePage={this.closePage}
@@ -90,9 +121,18 @@ class MainPage extends React.Component {
           <PDP
             productID={this.state.showProd.id}
             diffProd={this.state.diffProd}
-            currencyIndex={this.state.currency.index}
+            currency={this.state.currency}
             changeDiffProd={this.changeDiffProd}
             addProd={this.addProd}
+            closePage={this.closePage}
+          />
+        ) : null}
+        {this.state.showCart ? (
+          <CartPage
+            miniCart={false}
+            selectedProducts={this.state.selectedProducts}
+            changeProdQuantity={this.changeProdQuantity}
+            removeProd={this.removeProd}
             closePage={this.closePage}
           />
         ) : null}

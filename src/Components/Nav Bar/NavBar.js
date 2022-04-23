@@ -18,7 +18,12 @@ class NavBar extends React.Component {
             selectCurrency={this.props.selectCurrency}
             currency={this.props.currency}
           />
-          <CartNavBar />
+          <CartNavBar
+            selectedProducts={this.props.selectedProducts}
+            changeProdQuantity={this.props.changeProdQuantity}
+            removeProd={this.props.removeProd}
+            noOfItems={this.props.noOfItems}
+          />
         </div>
       </nav>
     );

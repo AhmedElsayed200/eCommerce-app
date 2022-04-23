@@ -1,5 +1,5 @@
 import React from "react";
-import "./PopupAtt.css";
+import "./AttPage.css";
 import { PRODUCT_ATT_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
@@ -11,11 +11,10 @@ const initialAtt = {
   "Touch ID in keyboard": "",
 };
 
-class PopupAtt extends React.Component {
+class AttPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: this.props.productID,
       attributes: {
         Color: "",
         Capacity: "",
@@ -53,19 +52,19 @@ class PopupAtt extends React.Component {
     // console.log(this.state.attributes);
   };
 
-  closePage = (e) => {
+  closePage = () => {
     this.props.closePage();
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = (pInfo, e) => {
     e.preventDefault();
     const attState = this.state.attributes;
-    let selectedAtt = { productID: this.state.productID };
+    let selectedProd = pInfo;
     for (let att in attState) {
-      if (attState[att] !== "") selectedAtt[att] = attState[att];
+      if (attState[att] !== "") selectedProd.attributes[att] = attState[att];
     }
     if (this.formValidation()) {
-      this.props.addProd(selectedAtt);
+      this.props.addProd(selectedProd);
       this.resetAtt();
       alert("Product has been added to the Cart");
     } else {
@@ -81,12 +80,24 @@ class PopupAtt extends React.Component {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error! ${error.message}</p>;
 
-          const productAtt = data.product;
-          // console.log(productAtt);
+          const product = data.product;
+          // console.log(product);
+
+          let prodPrice = product.prices[this.props.currency.index].amount;
+          let productInf = {
+            id: this.props.productID,
+            name: product.name,
+            brand: product.brand,
+            quantity: 1,
+            symbol: this.props.currency.symbol,
+            price: prodPrice,
+            image: product.gallery[0],
+            attributes: {},
+          };
 
           return (
             <form
-              onSubmit={this.handleSubmit}
+              onSubmit={(e) => this.handleSubmit(productInf, e)}
               className={this.props.PDP ? "" : "prod-att-form"}
             >
               <div
@@ -96,12 +107,12 @@ class PopupAtt extends React.Component {
                     : "prod-att-container"
                 }
               >
-                {productAtt.attributes.length ? null : (
+                {product.attributes.length ? null : (
                   <label className="no-att-lbl">
                     There is no attributes for this product
                   </label>
                 )}
-                {productAtt.attributes.map((att) => (
+                {product.attributes.map((att) => (
                   <div className="prod-att" key={att.id}>
                     <label className="att-name">
                       {att.name}
@@ -153,4 +164,4 @@ class PopupAtt extends React.Component {
   }
 }
 
-export default PopupAtt;
+export default AttPage;

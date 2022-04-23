@@ -47,7 +47,12 @@ export const PRODUCT_ATT_QUERY = gql`
   query ProductAtt($id: String!){
     product(id: $id){
         id
-        gallery   
+        name
+        brand
+        gallery
+        prices{  
+          amount 
+        }   
         attributes{ 
           id 
           name 
