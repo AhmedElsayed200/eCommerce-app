@@ -16,7 +16,7 @@ class MainPage extends React.Component {
       showAtt: { id: "", show: false },
       showProd: { id: "", show: false },
       diffProd: false,
-      showCart: true,
+      showCart: false,
       selectedProducts: [],
     };
     this.selectCategory = this.selectCategory.bind(this);
@@ -28,6 +28,7 @@ class MainPage extends React.Component {
     this.changeDiffProd = this.changeDiffProd.bind(this);
     this.changeProdQuantity = this.changeProdQuantity.bind(this);
     this.removeProd = this.removeProd.bind(this);
+    this.showCart = this.showCart.bind(this);
   }
 
   selectCategory = (category) => {
@@ -56,7 +57,7 @@ class MainPage extends React.Component {
   closePage = () => {
     this.setState({ showAtt: { id: "", show: false } });
     this.setState({ showProd: { id: "", show: false } });
-    // this.setState({ showCart: false });
+    this.setState({ showCart: false });
   };
   showProd = (id) => {
     if (this.state.showProd.id !== id) this.setState({ diffProd: true });
@@ -87,6 +88,9 @@ class MainPage extends React.Component {
       selectedProducts: selectedProducts,
     });
   };
+  showCart = () => {
+    this.setState({ showCart: true });
+  };
 
   render() {
     return (
@@ -96,9 +100,10 @@ class MainPage extends React.Component {
           selectCurrency={this.selectCurrency}
           currency={this.state.currency}
           selectedProducts={this.state.selectedProducts}
+          noOfItems={this.state.selectedProducts.length}
           changeProdQuantity={this.changeProdQuantity}
           removeProd={this.removeProd}
-          noOfItems={this.state.selectedProducts.length}
+          showCart={this.showCart}
         />
         <PLP
           category={this.state.category}

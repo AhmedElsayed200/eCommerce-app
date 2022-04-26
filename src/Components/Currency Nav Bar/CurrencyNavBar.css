@@ -1,5 +1,6 @@
 #currDropdownContainer {
   margin-right: 5%;
+  position: relative;
 }
 
 #currBtn {
@@ -11,6 +12,7 @@
   font-family: inherit;
   margin: 0;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 #currDropdownContainer:hover #currDropdownContent {
@@ -35,4 +37,10 @@
   text-align: left;
   cursor: pointer;
   user-select: none;
+}
+
+#currArrow {
+  position: absolute;
+  bottom: 5px;
+  right: -8px;
 }

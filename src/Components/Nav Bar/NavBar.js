@@ -21,8 +21,9 @@ class NavBar extends React.Component {
           <CartNavBar
             selectedProducts={this.props.selectedProducts}
             changeProdQuantity={this.props.changeProdQuantity}
-            removeProd={this.props.removeProd}
             noOfItems={this.props.noOfItems}
+            removeProd={this.props.removeProd}
+            showCart={this.props.showCart}
           />
         </div>
       </nav>
