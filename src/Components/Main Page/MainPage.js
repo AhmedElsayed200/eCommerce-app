@@ -49,9 +49,20 @@ class MainPage extends React.Component {
   };
   addProd = (prod) => {
     const newProd = prod;
-    this.setState((prevState) => ({
-      selectedProducts: [...prevState.selectedProducts, newProd],
-    }));
+    const newProdStr = JSON.stringify(newProd);
+    let selectedProducts = this.state.selectedProducts;
+    let repeatedProdindx;
+    selectedProducts.forEach((prod, i) => {
+      if (newProdStr === JSON.stringify(prod)) repeatedProdindx = i;
+    });
+    if (Number.isInteger(repeatedProdindx)) {
+      selectedProducts[repeatedProdindx].quantity += 1;
+      this.setState({ selectedProducts: selectedProducts });
+    } else {
+      this.setState((prevState) => ({
+        selectedProducts: [...prevState.selectedProducts, newProd],
+      }));
+    }
     console.log(this.state.selectedProducts);
   };
   closePage = () => {
@@ -116,7 +127,6 @@ class MainPage extends React.Component {
         {this.state.showAtt.show ? (
           <AttPage
             productID={this.state.showAtt.id}
-            currency={this.state.currency}
             PDP={false}
             addProd={this.addProd}
             closePage={this.closePage}
@@ -136,6 +146,7 @@ class MainPage extends React.Component {
           <CartPage
             miniCart={false}
             selectedProducts={this.state.selectedProducts}
+            currency={this.state.currency}
             changeProdQuantity={this.changeProdQuantity}
             removeProd={this.removeProd}
             closePage={this.closePage}

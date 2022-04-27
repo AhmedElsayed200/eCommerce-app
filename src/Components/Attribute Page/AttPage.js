@@ -83,14 +83,14 @@ class AttPage extends React.Component {
           const product = data.product;
           // console.log(product);
 
-          let prodPrice = product.prices[this.props.currency.index].amount;
+          let prodPrices = product.prices.map(curr => curr.amount);
+          // console.log(prodPrices)
           let productInf = {
             id: this.props.productID,
             name: product.name,
             brand: product.brand,
             quantity: 1,
-            symbol: this.props.currency.symbol,
-            price: prodPrice,
+            prices: prodPrices,
             image: product.gallery[0],
             attributes: {},
           };

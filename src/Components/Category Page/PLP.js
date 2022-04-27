@@ -143,7 +143,7 @@ class PLP extends React.Component {
             <div id="categContainer">
               <p className="categName">
                 {categName.charAt(0).toUpperCase() + categName.slice(1)}
-                {" Category"}
+                {categName === "all" ? " Categories" : " Category"}
               </p>
               {showProducts.map((product) => product)}
               <div id="changePageBtn">

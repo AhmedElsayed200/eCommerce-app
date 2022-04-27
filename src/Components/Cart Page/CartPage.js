@@ -51,16 +51,25 @@ class CartPage extends React.Component {
                     {prod.brand}
                   </div>
                   <div className="prod-price">
-                    {prod.symbol}
-                    {Number(`${prod.price}`).toFixed(2)}
+                    {this.props.currency.symbol}
+                    {Number(
+                      `${prod.prices[this.props.currency.index]}`
+                    ).toFixed(2)}
                     {" per piece"}
                     {isMiniCart
                       ? null
-                      : ` - Total: ${prod.symbol}${Number(
-                          `${prod.price * prod.quantity}`
+                      : ` - Total: ${this.props.currency.symbol}${Number(
+                          `${
+                            prod.prices[this.props.currency.index] *
+                            prod.quantity
+                          }`
                         ).toFixed(2)}`}
                     <div style={{ display: "none" }}>
-                      {(totPrice += prod.price * prod.quantity)}
+                      {
+                        (totPrice +=
+                          prod.prices[this.props.currency.index] *
+                          prod.quantity)
+                      }
                     </div>
                   </div>
                   <div className="prod-att-cart">
@@ -125,14 +134,12 @@ class CartPage extends React.Component {
               </div>
             ))}
           </div>
-          {sProducts.length ? (
-            <div className="total-price">
-              <p className="tot-price">
-                Total Cost: {sProducts[0].symbol}
-                {Number(`${totPrice}`).toFixed(2)}
-              </p>
-            </div>
-          ) : null}
+          <div className="total-price">
+            <p className="tot-price">
+              Total: {this.props.currency.symbol}
+              {Number(`${totPrice}`).toFixed(2)}
+            </p>
+          </div>
           {isMiniCart ? (
             <button
               className="cart-btns view-cart"

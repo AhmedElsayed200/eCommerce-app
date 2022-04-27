@@ -15,6 +15,7 @@ class CartNavBar extends React.Component {
         <CartPage
           miniCart={true}
           selectedProducts={this.props.selectedProducts}
+          currency={this.props.currency}
           changeProdQuantity={this.props.changeProdQuantity}
           removeProd={this.props.removeProd}
           showCart={this.props.showCart}
