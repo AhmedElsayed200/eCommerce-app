@@ -9,17 +9,22 @@ class CurrencyNavBar extends React.Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
+    this.flipUp = this.flipUp.bind(this);
+    this.flibDown = this.flibDown.bind(this);
   }
 
-  handleClick = (currSymbol, indx, e) => {
+  /* select currency */
+  handleClick = (currSymbol, indx) => {
     this.props.selectCurrency(currSymbol, indx);
   };
 
+  /* arrow up while dropdown menu is opened */
   flipUp = () => {
     const arrow = document.getElementById("currArrow");
     arrow.src = upArrow;
   };
 
+  /* arrow down while dropdown menu is closed */
   flibDown = () => {
     const arrow = document.getElementById("currArrow");
     arrow.src = downArrow;

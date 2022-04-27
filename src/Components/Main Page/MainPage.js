@@ -10,14 +10,14 @@ class MainPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: { title: "all" },
-      diffCategory: false,
-      currency: { symbol: "$", index: 0 },
-      showAtt: { id: "", show: false },
-      showProd: { id: "", show: false },
-      diffProd: false,
-      showCart: false,
-      selectedProducts: [],
+      category: { title: "all" }, /* the chosen category [CartNavBar] */
+      currency: { symbol: "$", index: 0 }, /* the chosen currency [CurrencyNavBar] */
+      diffCategory: false, /* the just pressed category is differ from the privous one [PLP] */
+      showAtt: { id: "", show: false }, /* from [PLP] */
+      showProd: { id: "", show: false }, /* from [PLP] */
+      diffProd: false, /* for image slider [PDP] */
+      showCart: false, /* show cart page [CartPage] */
+      selectedProducts: [], /* selected products [CartPage] */
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectCurrency = this.selectCurrency.bind(this);
@@ -31,6 +31,7 @@ class MainPage extends React.Component {
     this.showCart = this.showCart.bind(this);
   }
 
+  /* select category, set diffCategory state and close attribute/product/cart pages */
   selectCategory = (category) => {
     if (this.state.category.title === category)
       this.setState({ diffCategory: false });
@@ -38,46 +39,59 @@ class MainPage extends React.Component {
     this.setState({ category: { title: category } });
     this.closePage();
   };
+
   selectCurrency = (currencySymbol, indx) => {
     this.setState({ currency: { symbol: currencySymbol, index: indx } });
   };
+
   changeDiffCategory = () => {
     this.setState({ diffCategory: false });
   };
+
   showAtt = (id) => {
     this.setState({ showAtt: { id: id, show: true } });
   };
+
+  /* add product to the cart */
   addProd = (prod) => {
     const newProd = prod;
     const newProdStr = JSON.stringify(newProd);
     let selectedProducts = this.state.selectedProducts;
-    let repeatedProdindx;
-    selectedProducts.forEach((prod, i) => {
-      if (newProdStr === JSON.stringify(prod)) repeatedProdindx = i;
+    let isExist = false;
+    /* compare between the "will be added product" with the already exist products */
+    selectedProducts.forEach((prod) => {
+      prod.quantity = 1;
+      if (newProdStr === JSON.stringify(prod))
+        isExist = true;
     });
-    if (Number.isInteger(repeatedProdindx)) {
-      selectedProducts[repeatedProdindx].quantity += 1;
-      this.setState({ selectedProducts: selectedProducts });
+    if (isExist) {
+      alert("The product already exist in the cart"); /* don't add already exist product */
     } else {
       this.setState((prevState) => ({
         selectedProducts: [...prevState.selectedProducts, newProd],
       }));
+      alert("Product has been added to the Cart");
     }
-    console.log(this.state.selectedProducts);
   };
+
+  /* close attribute/product/cart pages */
   closePage = () => {
     this.setState({ showAtt: { id: "", show: false } });
     this.setState({ showProd: { id: "", show: false } });
     this.setState({ showCart: false });
   };
+
+  /* show product and set diffProd state */
   showProd = (id) => {
     if (this.state.showProd.id !== id) this.setState({ diffProd: true });
     else if (this.state.showProd.id === id) this.setState({ diffProd: false });
     this.setState({ showProd: { id: id, show: true } });
   };
+
   changeDiffProd = () => {
     this.setState({ diffProd: false });
   };
+
   changeProdQuantity = (indx, val) => {
     let selectedProducts = this.state.selectedProducts;
     let product = selectedProducts[indx];
@@ -91,6 +105,7 @@ class MainPage extends React.Component {
       });
     }
   };
+
   removeProd = (indx) => {
     let selectedProducts = this.state.selectedProducts;
     selectedProducts.splice(indx, 1);
@@ -99,6 +114,7 @@ class MainPage extends React.Component {
       selectedProducts: selectedProducts,
     });
   };
+
   showCart = () => {
     this.setState({ showCart: true });
   };
@@ -107,9 +123,12 @@ class MainPage extends React.Component {
     return (
       <div id="mainPage">
         <NavBar
+          /* for CategoriesNavBar */
           selectCategory={this.selectCategory}
+          /* for CurrencyNavBar component*/
           selectCurrency={this.selectCurrency}
-          currency={this.state.currency}
+          currency={this.state.currency} /* for CurrencyNavBar*/
+          /* for CartPage component */
           selectedProducts={this.state.selectedProducts}
           noOfItems={this.state.selectedProducts.length}
           changeProdQuantity={this.changeProdQuantity}

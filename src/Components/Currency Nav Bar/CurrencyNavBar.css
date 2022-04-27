@@ -1,3 +1,4 @@
+/* currency navbar container */
 #currDropdownContainer {
   margin-right: 5%;
   position: relative;
@@ -15,6 +16,7 @@
   -webkit-user-select: none;
 }
 
+/* show dropdown menu on hover */
 #currDropdownContainer:hover #currDropdownContent {
   display: block;
 }
@@ -39,6 +41,7 @@
   user-select: none;
 }
 
+/* up and down arrows */
 #currArrow {
   position: absolute;
   bottom: 5px;

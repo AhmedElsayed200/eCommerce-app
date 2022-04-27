@@ -3,14 +3,6 @@ import "./AttPage.css";
 import { PRODUCT_ATT_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
-const initialAtt = {
-  Color: "",
-  Capacity: "",
-  Size: "",
-  "With USB 3 ports": "",
-  "Touch ID in keyboard": "",
-};
-
 class AttPage extends React.Component {
   constructor(props) {
     super(props);
@@ -30,16 +22,27 @@ class AttPage extends React.Component {
     this.closePage = this.closePage.bind(this);
   }
 
+  /* reset attributes */
   resetAtt = () => {
+    const initialAtt = {
+      Color: "",
+      Capacity: "",
+      Size: "",
+      "With USB 3 ports": "",
+      "Touch ID in keyboard": "",
+    };
     this.setState({ attributes: initialAtt });
   };
 
+  /* make sure that all attributes of a product are selected before addition to cart */
   formValidation = () => {
     const checkedEle = document.querySelectorAll("input:checked");
     const attList = document.getElementsByClassName("att-name");
+    /* true only if number of attributes are equal to the checked elements */
     return checkedEle.length === attList.length;
   };
 
+  /* selection of attributes */
   handleSelection = (e) => {
     const stateName = e.target.name;
     const stateNewValue = e.target.value;
@@ -49,13 +52,14 @@ class AttPage extends React.Component {
         [stateName]: stateNewValue,
       },
     }));
-    // console.log(this.state.attributes);
   };
 
+  /* close attribute page */
   closePage = () => {
     this.props.closePage();
   };
 
+  /* add a product to the cart */
   handleSubmit = (pInfo, e) => {
     e.preventDefault();
     const attState = this.state.attributes;
@@ -64,13 +68,15 @@ class AttPage extends React.Component {
       if (attState[att] !== "") selectedProd.attributes[att] = attState[att];
     }
     if (this.formValidation()) {
-      this.props.addProd(selectedProd);
-      this.resetAtt();
-      alert("Product has been added to the Cart");
+      this.props.addProd(
+        selectedProd
+      ); /* function from main.js to manipulate selected products array state in main.js */
+      this.resetAtt(); /* reset attribute selection after every product addition to cart */
     } else {
-      alert("Please select all attributes");
+      alert(
+        "Please select all attributes"
+      ); /* if at least one attribute is not selected */
     }
-    // console.log(selectAtt);
   };
 
   render() {
@@ -81,10 +87,9 @@ class AttPage extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const product = data.product;
-          // console.log(product);
-
-          let prodPrices = product.prices.map(curr => curr.amount);
-          // console.log(prodPrices)
+          /* array of prices per product*/
+          let prodPrices = product.prices.map((curr) => curr.amount);
+          /* all the necessary info of the added product */
           let productInf = {
             id: this.props.productID,
             name: product.name,
@@ -98,7 +103,9 @@ class AttPage extends React.Component {
           return (
             <form
               onSubmit={(e) => this.handleSubmit(productInf, e)}
-              className={this.props.PDP ? "" : "prod-att-form"}
+              className={
+                this.props.PDP ? "" : "prod-att-form"
+              } /* AttPage is used by many components so the class name depends on what component called it */
             >
               <div
                 className={
@@ -107,11 +114,13 @@ class AttPage extends React.Component {
                     : "prod-att-container"
                 }
               >
+                {/* show this label if no attributes for the product */}
                 {product.attributes.length ? null : (
                   <label className="no-att-lbl">
                     There is no attributes for this product
                   </label>
                 )}
+                {/* show product attributes */}
                 {product.attributes.map((att) => (
                   <div className="prod-att" key={att.id}>
                     <label className="att-name">
@@ -143,6 +152,7 @@ class AttPage extends React.Component {
                     ))}
                   </div>
                 ))}
+                {/* close and submit button */}
                 <button
                   type="button"
                   className="close-btn"

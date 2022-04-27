@@ -15,6 +15,7 @@ class PLP extends React.Component {
     this.handleShowProd = this.handleShowProd.bind(this);
   }
 
+  /* change page to show other products of the same category  */
   handlePageChange = (pLength, e) => {
     const clickedBut = e.target;
     const productsLength = pLength;
@@ -33,28 +34,35 @@ class PLP extends React.Component {
     } else if (
       clickedBut.className === "prev-page-btn" &&
       itemStart - nOfShownProd >= 0
-    )
+    ) {
       this.setState({ itemStart: itemStart - nOfShownProd });
+    }
     this.props.changeDiffCategory();
   };
 
-  handleShowAtt = (id, inStock, e) => {
+  /* show attribute of a product if it is in the stock */
+  handleShowAtt = (id, inStock) => {
     if (inStock) this.props.showAtt(id);
   };
 
-  handleShowProd = (id, inStock, e) => {
+  /* show product description page of a product if it is in the stock */
+  handleShowProd = (id, inStock) => {
     if (inStock) this.props.showProd(id);
   };
 
   render() {
+    /* push 6 or less products in this array to be shown in PLP */
     let productsList = [];
     let showProducts = [];
     const lastIndx = 5,
       categName = this.props.category.title;
+
     return (
       <Query
         query={PRODUCTS_PER_GATEGORY_QUERY}
-        variables={{ input: this.props.category }}
+        variables={{
+          input: this.props.category,
+        }} /* eg. input: {title:"clothes"} */
       >
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
@@ -63,20 +71,23 @@ class PLP extends React.Component {
           const { products } = data.category;
 
           let start, end;
+          /* if the user clicked on another category rather than what he was on it, 
+          show products from the first index till 6 or lesser elements */
           if (this.props.diffCategory) {
             start = 0;
             end = lastIndx <= products.length ? lastIndx : products.length - 1;
           } else {
+            /* else, show from the index it stopped at till another till 6 or lesser elements */
             start = this.state.itemStart;
             end =
               this.state.itemStart + lastIndx <= products.length
                 ? this.state.itemStart + lastIndx
                 : products.length - 1;
           }
-          // console.log(start, end, this.state.itemStart);
+          /* loop traversing on the all products list to fetch only specific components from start to end indices */
           for (let i = start; i <= end; ++i) {
             productsList.push(
-              <div
+              <div /* product container */
                 key={products[i].id}
                 className={
                   products[i].inStock
@@ -84,12 +95,13 @@ class PLP extends React.Component {
                     : "product-container"
                 }
               >
-                <div
+                <div /* image container */
                   className="product-img-container"
                   onClick={(e) => {
                     this.handleShowProd(products[i].id, products[i].inStock, e);
                   }}
                 >
+                  {/* show out of stock if product not in stock */}
                   {products[i].inStock ? (
                     <img
                       className="product-img"
@@ -107,6 +119,7 @@ class PLP extends React.Component {
                     </>
                   )}
                 </div>
+                {/* product info */}
                 <div className="product-content">
                   <p className="product-name-brand">
                     {products[i].name} {"-"} {products[i].brand}
@@ -135,17 +148,21 @@ class PLP extends React.Component {
             );
           }
 
+          /* copy the array to another empty one and clear the productsList array */
           showProducts = [...productsList];
           productsList = [];
           let allProdLength = products.length;
 
           return (
             <div id="categContainer">
+              {/* the name of the category */}
               <p className="categName">
                 {categName.charAt(0).toUpperCase() + categName.slice(1)}
                 {categName === "all" ? " Categories" : " Category"}
               </p>
+              {/* map the showProducts array to show the products */}
               {showProducts.map((product) => product)}
+              {/* next and previous page buttons */}
               <div id="changePageBtn">
                 <button
                   className="prev-page-btn"

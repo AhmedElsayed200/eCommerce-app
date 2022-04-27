@@ -5,6 +5,7 @@ import CartPage from "../Cart Page/CartPage";
 
 class CartNavBar extends React.Component {
   render() {
+    /* number of items in the cart */
     const cartItems = this.props.noOfItems;
     return (
       <div id="cartDropdownContainer">
@@ -12,13 +13,19 @@ class CartNavBar extends React.Component {
           <img src={shoppingCart} alt="Shopping Cart" />
           {cartItems ? <p id="cartItemNum"> {cartItems} </p> : null}
         </button>
+        {/* CartPage component used here to show the minicart while hover on shopping cart in navbar*/}
         <CartPage
+          /* specify who called the CartPage component [for design/functionality purpose] */
           miniCart={true}
+          /* the selected products to be shown in the cart */
           selectedProducts={this.props.selectedProducts}
+          /* to represent the product with the right currency type */
           currency={this.props.currency}
+          /* function for product quantity manipulation */
           changeProdQuantity={this.props.changeProdQuantity}
+          /* function to remove product from the cart */
           removeProd={this.props.removeProd}
-          showCart={this.props.showCart}
+          showCart={this.props.showCart} /* function to show the cart page */
         />
       </div>
     );

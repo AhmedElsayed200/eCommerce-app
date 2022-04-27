@@ -13,11 +13,13 @@ class PDP extends React.Component {
     this.showImg = this.showImg.bind(this);
   }
 
+  /* after every update, reset image slider starting index */
   componentDidUpdate = (prevProps) => {
     if (prevProps.diffProd !== this.props.diffProd && this.props.diffProd)
       this.setState({ imgIndex: 0 });
   };
 
+  /* movement between images */
   showImg = (len, e) => {
     const ele = e.target;
     const curIndx = this.state.imgIndex;
@@ -42,10 +44,10 @@ class PDP extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const { product } = data;
-          console.log(product);
 
           return (
             <div className="PDP-container">
+              {/* image slider */}
               <div className="slider-container">
                 {product.gallery.map((img, i) => (
                   <div
@@ -83,6 +85,7 @@ class PDP extends React.Component {
                   ))}
                 </div>
               </div>
+              {/* product info */}
               <div className="info-container">
                 <div className="name-cost-container">
                   <p className="prod-name">

@@ -12,6 +12,7 @@ li {
   -webkit-user-select: none;
 }
 
+/* style for the selected category */
 li.categ-active {
   color: #5ece7b;
   border-bottom: 2px solid #5ece7b;

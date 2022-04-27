@@ -1,4 +1,4 @@
-/* PLD section */
+/* PLP container */
 #categContainer {
   display: grid;
   grid-template-columns: repeat(3, 20%);
@@ -8,6 +8,7 @@
   align-content: start;
 }
 
+/* category name*/
 p.categName {
   grid-column: 1/4;
   margin: 0;
@@ -16,6 +17,7 @@ p.categName {
 }
 
 /* product item */
+
 .product-container {
   position: relative;
   display: grid;
@@ -33,6 +35,7 @@ p.categName {
 }
 
 /* product image */
+
 div.product-img-container {
   position: relative;
   cursor: pointer;
@@ -62,6 +65,7 @@ img.product-img {
 }
 
 /* product info */
+
 .product-content {
   text-align: center;
   overflow: auto;
@@ -71,6 +75,10 @@ img.product-img {
 .product-price {
   margin: 4% 0 0 0;
 }
+
+/* PLP buttons */
+
+/* next and previous buttons */
 
 #changePageBtn {
   grid-column-start: 2;
@@ -102,6 +110,7 @@ img.product-img {
 }
 
 /* add product button */
+
 .add-cart-btn-plp {
   display: flex;
   justify-content: center;

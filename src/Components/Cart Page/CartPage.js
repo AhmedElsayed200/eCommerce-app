@@ -10,6 +10,7 @@ class CartPage extends React.Component {
     this.handleViewbag = this.handleViewbag.bind(this);
   }
 
+  /* products quantity manipulation */
   handleQuantity = (indx, val, e) => {
     this.props.changeProdQuantity(indx, val);
   };
@@ -27,14 +28,19 @@ class CartPage extends React.Component {
   };
 
   render() {
+    /* the selected products [array state from MainPage component] */
     const sProducts = this.props.selectedProducts;
+    /* to know which called the CartPage */
     const isMiniCart = this.props.miniCart;
     let totPrice = 0;
+    /* if no added products yet, return nothing */
     if (sProducts.length === 0) {
       return null;
     }
+
     return (
       <div className={isMiniCart ? "cart-page-mini" : "cart-page"}>
+        {/* class name depends on which called the CartPage component */}
         <div className="cart-component">
           <p className="cart-name"> CART </p>
           <hr />
@@ -44,6 +50,7 @@ class CartPage extends React.Component {
                 key={prod.id + i}
                 className={isMiniCart ? "prod-cart-mini" : "prod-cart"}
               >
+                {/* show product info: name, brand, cost per piece and per quantity, attributes */}
                 <div className="prod-info">
                   <div className="name-brand-prod">
                     {prod.name}
@@ -56,6 +63,7 @@ class CartPage extends React.Component {
                       `${prod.prices[this.props.currency.index]}`
                     ).toFixed(2)}
                     {" per piece"}
+                    {/* don't show total cost per product quantity in the minicart */}
                     {isMiniCart
                       ? null
                       : ` - Total: ${this.props.currency.symbol}${Number(
@@ -64,6 +72,7 @@ class CartPage extends React.Component {
                             prod.quantity
                           }`
                         ).toFixed(2)}`}
+                    {/* calculate the total cost for the cart */}
                     <div style={{ display: "none" }}>
                       {
                         (totPrice +=
@@ -72,10 +81,12 @@ class CartPage extends React.Component {
                       }
                     </div>
                   </div>
+                  {/* show product attributes */}
                   <div className="prod-att-cart">
-                    {Object.keys(prod.attributes).map((key, indx) => (
+                    {Object.keys(prod.attributes).map((key) => (
                       <div className="att-row-cart" key={key}>
                         <span className="att-name-cart">{key}: </span>
+                        {/* if color attribute, show color itself */}
                         {key === "Color" ? (
                           <span
                             className="att-val-cart prod-color-cart"
@@ -93,9 +104,11 @@ class CartPage extends React.Component {
                     ))}
                   </div>
                 </div>
+                {/* product image */}
                 <div className="img-cont">
                   <img src={prod.image} alt={prod.name} className="prod-img" />
                 </div>
+                {/* products quantity manipulation */}
                 <div className="quantity-manip-btn">
                   <button
                     className={
@@ -119,6 +132,7 @@ class CartPage extends React.Component {
                     -
                   </button>
                 </div>
+                {/* remove product button */}
                 <button
                   className={
                     isMiniCart
@@ -134,12 +148,14 @@ class CartPage extends React.Component {
               </div>
             ))}
           </div>
+          {/* cart total price */}
           <div className="total-price">
             <p className="tot-price">
               Total: {this.props.currency.symbol}
               {Number(`${totPrice}`).toFixed(2)}
             </p>
           </div>
+          {/* show "view bag button" or "back button" depinding on which called the component */}
           {isMiniCart ? (
             <button
               className="cart-btns view-cart"

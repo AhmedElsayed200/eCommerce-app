@@ -9,7 +9,9 @@ class CategoriesNavBar extends React.Component {
     this.handleSelection = this.handleSelection.bind(this);
   }
 
+  /* All category is the chosen category by default */
   componentDidMount() {
+    /* wait for some time to make sure that all elements do exist in the DOM */
     setTimeout(() => {
       const allEleCateg = document.getElementsByClassName("categ-item");
       const firstCateg = allEleCateg[0];
@@ -17,6 +19,7 @@ class CategoriesNavBar extends React.Component {
     }, 300);
   }
 
+  /* category selection */
   handleSelection(categName, e) {
     const categElements = document.getElementsByClassName("categ-item");
     const selectedCateg = e.target;

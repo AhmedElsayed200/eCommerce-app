@@ -1,4 +1,5 @@
 /* attribute containers */
+
 .prod-att-form {
   display: flex;
   justify-content: center;
@@ -27,7 +28,7 @@
   height: 20%;
 }
 
-/* attribute name*/
+/* attribute name */
 .att-name,
 .no-att-lbl {
   display: flex;
@@ -38,11 +39,8 @@
   font-weight: bold;
 }
 
-.no-att-lbl {
-  justify-content: center;
-}
+/* attribute value */
 
-/* attribute value*/
 .radio-input {
   opacity: 0;
   position: fixed;
@@ -62,7 +60,13 @@
   font-size: 90%;
 }
 
-/* hover and check radio input*/
+/* not attribute label */
+.no-att-lbl {
+  justify-content: center;
+}
+
+/* hover and check radio input */
+
 input[type="radio"]:checked + .att-val-span {
   background-color: #1d1f22;
   color: #ffffff;
