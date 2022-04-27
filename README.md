@@ -1,7 +1,5 @@
 # E-commerce Scandiweb React Test website
 
----
-
 ## Overview
 
 An e-commerce web app created with react.js fetches products from a graphql endpoint using Apollo client.
@@ -33,18 +31,24 @@ The dependencies used in this application with its version:
 
 ## How to run the project
 
-1.  Download and install [nodejs](https://nodejs.org/en/download/)
-2.  Use this graphql endpoint [here](https://github.com/scandiweb/junior-react-endpoint) [it contains all the data presented on this website].
-    1.  Download or clone it.
-    2.  Install its dependencies: `npm install`
-    3.  Build the project: `npm run build`
-    4.  Start the project: `npm start`
+1. Download and install [nodejs](https://nodejs.org/en/download/)
+2. Use this graphql endpoint [here](https://github.com/scandiweb/junior-react-endpoint) [it contains all the data presented on this website].
+   1. Download or clone it.
+   2. Install its dependencies: `npm install`
+   3. Build the project: `npm run build`
+   4. Start the project: `npm start`
 
-> The server side is now ready, and it is time to start this project.
+> The server side is now ready
 
-1. Download or clone it.
-2. Install its dependencies: `npm install`
-3. Build the project: `npm run build`
-4. Start the project: `npm start`
+3. Time to start this project.
 
-> The website is now working, hope you enjoy it.
+   1. Download or clone this repository.
+   2. Install its dependencies: `npm install`
+   3. Build the project: `npm run build`
+   4. Start the project: `npm start`
+
+> The website is now working, hope you enjoy it 😃
+
+## Tour in the website
+
+<a href="http://www.youtube.com/" target="_blank"><img src="" alt="Tour in the website" width="240px" height="180px" /></a>
