@@ -1,6 +1,6 @@
 import React from "react";
 import "./MainPage.css";
-import NavBar from "../Nav Bar/NavBar";
+import Navbar from "../Navbar/Navbar";
 import PLP from "../Category Page/PLP";
 import AttPage from "../Attribute Page/AttPage";
 import PDP from "../Product Page/PDP";
@@ -10,8 +10,8 @@ class MainPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: { title: "all" }, /* the chosen category [CartNavBar] */
-      currency: { symbol: "$", index: 0 }, /* the chosen currency [CurrencyNavBar] */
+      category: { title: "all" }, /* the chosen category [CartNavbar] */
+      currency: { symbol: "$", index: 0 }, /* the chosen currency [CurrencyNavbar] */
       diffCategory: false, /* the just pressed category is differ from the privous one [PLP] */
       showAtt: { id: "", show: false }, /* from [PLP] */
       showProd: { id: "", show: false }, /* from [PLP] */
@@ -122,12 +122,12 @@ class MainPage extends React.Component {
   render() {
     return (
       <div id="mainPage">
-        <NavBar
-          /* for CategoriesNavBar */
+        <Navbar
+          /* for CategoriesNavbar */
           selectCategory={this.selectCategory}
-          /* for CurrencyNavBar component*/
+          /* for CurrencyNavbar component*/
           selectCurrency={this.selectCurrency}
-          currency={this.state.currency} /* for CurrencyNavBar*/
+          currency={this.state.currency} /* for CurrencyNavbar*/
           /* for CartPage component */
           selectedProducts={this.state.selectedProducts}
           noOfItems={this.state.selectedProducts.length}

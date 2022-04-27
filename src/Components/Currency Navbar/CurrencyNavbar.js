@@ -1,11 +1,11 @@
 import React from "react";
-import "./CurrencyNavBar.css";
+import "./CurrencyNavbar.css";
 import downArrow from "../../images/down-arrow.png";
 import upArrow from "../../images/up-arrow.png";
 import { CURRENCIES_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
-class CurrencyNavBar extends React.Component {
+class CurrencyNavbar extends React.Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
@@ -67,4 +67,4 @@ class CurrencyNavBar extends React.Component {
   }
 }
 
-export default CurrencyNavBar;
+export default CurrencyNavbar;

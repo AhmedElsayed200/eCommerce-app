@@ -1,9 +1,9 @@
 import React from "react";
-import "./CartNavBar.css";
+import "./CartNavbar.css";
 import shoppingCart from "../../images/shopping-cart.png";
 import CartPage from "../Cart Page/CartPage";
 
-class CartNavBar extends React.Component {
+class CartNavbar extends React.Component {
   render() {
     /* number of items in the cart */
     const cartItems = this.props.noOfItems;
@@ -32,4 +32,4 @@ class CartNavBar extends React.Component {
   }
 }
 
-export default CartNavBar;
+export default CartNavbar;

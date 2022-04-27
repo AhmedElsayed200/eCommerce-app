@@ -1,9 +1,9 @@
 import React from "react";
-import "./CategoriesNavBar.css";
+import "./CategoriesNavbar.css";
 import { CATEGORIES_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
 
-class CategoriesNavBar extends React.Component {
+class CategoriesNavbar extends React.Component {
   constructor() {
     super();
     this.handleSelection = this.handleSelection.bind(this);
@@ -59,4 +59,4 @@ class CategoriesNavBar extends React.Component {
   }
 }
 
-export default CategoriesNavBar;
+export default CategoriesNavbar;

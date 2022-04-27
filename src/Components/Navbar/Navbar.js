@@ -1,24 +1,24 @@
 import React from "react";
-import "./NavBar.css";
-import CategoriesNavBar from "../Categories Nav Bar/CategoriesNavBar";
+import "./Navbar.css";
+import CategoriesNavbar from "../Categories Navbar/CategoriesNavbar";
 import webLogo from "../../images/web-logo.png";
-import CurrencyNavBar from "../Currency Nav Bar/CurrencyNavBar";
-import CartNavBar from "../Cart Nav Bar/CartNavBar";
+import CurrencyNavbar from "../Currency Navbar/CurrencyNavbar";
+import CartNavbar from "../Cart Navbar/CartNavbar";
 
-class NavBar extends React.Component {
+class Navbar extends React.Component {
   render() {
     return (
       <nav>
-        <CategoriesNavBar selectCategory={this.props.selectCategory} />
+        <CategoriesNavbar selectCategory={this.props.selectCategory} />
         <div id="webLogoContainer">
           <img src={webLogo} alt="website logo" id="webLogo" />
         </div>
         <div id="currencyCartContainer">
-          <CurrencyNavBar
+          <CurrencyNavbar
             selectCurrency={this.props.selectCurrency}
             currency={this.props.currency}
           />
-          <CartNavBar
+          <CartNavbar
             selectedProducts={this.props.selectedProducts}
             changeProdQuantity={this.props.changeProdQuantity}
             noOfItems={this.props.noOfItems}
@@ -32,4 +32,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default Navbar;
