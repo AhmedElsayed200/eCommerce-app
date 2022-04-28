@@ -50,6 +50,6 @@ The dependencies used in this application with its version:
 
 > The website is now working, hope you enjoy it 😃
 
-## Tour in the website
+## Tour in the website (See below video) &darr;
 
 <a href="https://youtu.be/Ql6-HwzI6cs" target="_blank"><img src="src/images/website.png" alt="Tour in the website" width="500px" height="300px" border="3px" /></a>
