@@ -41,7 +41,7 @@ class CartPage extends React.Component {
     return (
       <div className={isMiniCart ? "cart-page-mini" : "cart-page"}>
         {/* class name depends on which called the CartPage component */}
-        <div className="cart-component">
+        <div className={isMiniCart ? "cart-component-mini" : "cart-component"}>
           <p className="cart-name"> CART </p>
           <hr />
           <div className="products-cart-conatiner">
@@ -67,11 +67,10 @@ class CartPage extends React.Component {
                     {isMiniCart
                       ? null
                       : ` - Total: ${this.props.currency.symbol}${Number(
-                          `${
-                            prod.prices[this.props.currency.index] *
-                            prod.quantity
-                          }`
-                        ).toFixed(2)}`}
+                        `${prod.prices[this.props.currency.index] *
+                        prod.quantity
+                        }`
+                      ).toFixed(2)}`}
                     {/* calculate the total cost for the cart */}
                     <div style={{ display: "none" }}>
                       {

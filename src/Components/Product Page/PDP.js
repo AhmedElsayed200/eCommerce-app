@@ -54,7 +54,7 @@ class PDP extends React.Component {
                     key={i}
                     className="img-slider"
                     style={{
-                      display: this.state.imgIndex === i ? "block" : "none",
+                      display: this.state.imgIndex === i ? "flex" : "none",
                     }}
                   >
                     <img src={img} alt={product.name} className="prod-img" />

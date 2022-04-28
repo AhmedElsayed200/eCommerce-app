@@ -37,9 +37,7 @@
 .next-img {
   position: absolute;
   top: 40%;
-  width: auto;
   padding: 16px;
-  margin-top: -50px;
   color: #000000;
   font-weight: bold;
   font-size: 20px;
@@ -90,12 +88,12 @@
 .info-container {
   width: 50%;
   height: 70%;
-  margin-right: 33px;
+  margin-right: 2%;
 }
 
 .name-cost-container {
   font-size: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .prod-price {
@@ -105,9 +103,44 @@
 .prod-att-container-PDP {
   position: relative;
   min-width: 20%;
-  height: 275px;
+  height: 285px;
 }
 
 .prod-desc > * {
   font-size: 15px;
+}
+
+/* for mobile screens */
+
+@media only screen and (max-width: 720px) {
+  .PDP-container {
+    top: 25vh;
+    height: 126vh; /* to cover all the height */
+    align-items: start;
+    flex-direction: column; /* items aligned vertically*/
+    align-items: center;
+    justify-content: center;
+  }
+  .slider-container {
+    display: flex;
+    align-items: center;
+    height: 50%;
+  }
+  .img-slider {
+    height: 100%;
+  }
+  .prev-img {
+    left: -50px;
+  }
+  .next-img {
+    right: -50px;
+  }
+  .row {
+    display: none;
+  }
+  .info-container {
+    width: 80%;
+    height: 50%;
+    margin: 0;
+  }
 }

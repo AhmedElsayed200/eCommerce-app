@@ -125,8 +125,6 @@
   width: 30px;
   height: 30px;
   font-size: 120%;
-  font-weight: bold;
-  border-radius: 5px;
   background-color: rgba(94, 203, 123, 0.5);
 }
 
@@ -138,7 +136,6 @@
   width: 70px;
   height: 20px;
   font-size: 80%;
-  font-weight: bold;
   border-radius: 5px;
   background-color: rgba(94, 203, 123, 1);
 }
@@ -160,4 +157,45 @@
   font-size: 90%;
   font-weight: bold;
   margin: 0;
+}
+
+/* product desctiption */
+.prod-desc {
+  padding-bottom: 2%;
+}
+
+/* for mobile screens */
+
+@media only screen and (max-width: 720px) {
+  .cart-page {
+    top: 25vh;
+    min-height: 126vh;
+  }
+  .tot-price {
+    margin-top: 8%;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .cart-page {
+    top: 25vh;
+    min-height: 126vh;
+    font-size: 13px;
+  }
+  .cart-component {
+    width: 98%;
+  }
+  .inc-quantity-btn,
+  .dec-quantity-btn {
+    width: 20px;
+    height: 20px;
+  }
+  .remove-prod,
+  .close-cart {
+    width: 60px;
+    height: 20px;
+  }
+  .tot-price {
+    margin-top: 8%;
+  }
 }

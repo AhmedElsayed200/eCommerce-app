@@ -46,6 +46,12 @@
   z-index: 1;
 }
 
+.cart-component-mini {
+  width: 96%;
+  margin: auto;
+  position: relative;
+}
+
 /* show cart dropdown menu on hover */
 #cartDropdownContainer:hover .cart-page-mini {
   display: block;
@@ -79,7 +85,6 @@
   height: 15%;
   font-size: 120%;
   font-weight: bold;
-  border-radius: 5px;
   background-color: rgba(94, 203, 123, 0.5);
 }
 

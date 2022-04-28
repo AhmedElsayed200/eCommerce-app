@@ -18,6 +18,7 @@ An e-commerce web app created with react.js fetches products from a graphql endp
 - To open the cart, the user should hover on the cart shopping image in the navbar.
 - The user can remove a product or increase/decrease its quantity in the cart.
 - It is not possible to add a project that already exists in the cart (a same project with same attributes).
+- The website is responsive over all the screens.
 
 ## Dependencies
 
@@ -51,4 +52,4 @@ The dependencies used in this application with its version:
 
 ## Tour in the website
 
-<a href="http://www.youtube.com/" target="_blank"><img src="" alt="Tour in the website" width="240px" height="180px" /></a>
+<a href="https://youtu.be/Ql6-HwzI6cs" target="_blank"><img src="src/images/website.png" alt="Tour in the website" width="500px" height="300px" border="3px" /></a>
