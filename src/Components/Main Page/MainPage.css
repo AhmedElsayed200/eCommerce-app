@@ -1,7 +1,7 @@
 #mainPage {
   display: grid;
-  grid-template-columns: 90%;
-  grid-template-rows: 10vh 90vh;
+  grid-template-columns: 80%;
+  grid-template-rows: 10vh 110vh;
   justify-content: center;
   height: 100%;
 }

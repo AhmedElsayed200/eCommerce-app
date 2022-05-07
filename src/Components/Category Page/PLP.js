@@ -97,9 +97,6 @@ class PLP extends React.Component {
               >
                 <div /* image container */
                   className="product-img-container"
-                  onClick={(e) => {
-                    this.handleShowProd(products[i].id, products[i].inStock, e);
-                  }}
                 >
                   {/* show out of stock if product not in stock */}
                   {products[i].inStock ? (
@@ -107,6 +104,9 @@ class PLP extends React.Component {
                       className="product-img"
                       src={products[i].gallery[0]}
                       alt={products[i].name}
+                      onClick={(e) => {
+                        this.handleShowProd(products[i].id, products[i].inStock, e);
+                      }}
                     ></img>
                   ) : (
                     <>
@@ -118,6 +118,18 @@ class PLP extends React.Component {
                       <p className="out-of-stock-text">OUT OF STOCK</p>
                     </>
                   )}
+                  <button
+                    className="add-cart-btn-plp"
+                    onClick={(e) =>
+                      this.handleShowAtt(products[i].id, products[i].inStock, e)
+                    }
+                  >
+                    <img
+                      className="add-cart-img-plp"
+                      src={shoppingCart}
+                      alt="add product"
+                    />
+                  </button>
                 </div>
                 {/* product info */}
                 <div className="product-content">
@@ -132,18 +144,7 @@ class PLP extends React.Component {
                     {products[i].prices[this.props.currencyIndex].amount}
                   </p>
                 </div>
-                <button
-                  className="add-cart-btn-plp"
-                  onClick={(e) =>
-                    this.handleShowAtt(products[i].id, products[i].inStock, e)
-                  }
-                >
-                  <img
-                    className="add-cart-img-plp"
-                    src={shoppingCart}
-                    alt="add product"
-                  />
-                </button>
+
               </div>
             );
           }
