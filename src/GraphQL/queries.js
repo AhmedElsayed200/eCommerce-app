@@ -84,13 +84,6 @@ export const PRODUCT_QUERY = gql`
             value
         } 
         } 
-        prices{ 
-          currency{ 
-              label
-              symbol 
-          } 
-          amount 
-        } 
         brand 
     }
   }

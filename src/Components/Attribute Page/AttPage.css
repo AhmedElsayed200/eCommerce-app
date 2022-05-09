@@ -6,9 +6,13 @@
   align-items: center;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 134vh;
   margin: auto;
   background-color: RGB(20, 20, 20, 0.7);
+}
+
+.prod-att-form-PDP {
+  height: 60%;
 }
 
 .prod-att-container {
@@ -17,13 +21,10 @@
   width: 250px;
   min-width: 20%;
   height: 310px;
-  border: 1px solid #a6a6a6;
-  border-radius: 30px 30px 10px 10px;
-  padding: 1.5%;
 }
 
 .prod-att {
-  margin-bottom: 3%;
+  margin: 3%;
   width: 100%;
   height: 20%;
 }
@@ -65,6 +66,13 @@
   justify-content: center;
 }
 
+/* product price */
+.prod-price {
+  margin: 15% 3% 3% 3%;
+  font-size: 100%;
+  font-weight: bold;
+}
+
 /* hover and check radio input */
 
 input[type="radio"]:checked + .att-val-span {
@@ -84,26 +92,27 @@ input[type="radio"]:checked + .prod-color {
 .close-btn,
 .submit-btn {
   position: absolute;
-  padding: 9px 12px;
-  border: 1px solid #000000;
+  border: none;
   cursor: pointer;
-  font-size: 80%;
+  background-color: #5ece7b;
+  color: #ffffff;
   user-select: none;
   -webkit-user-select: none;
-  bottom: 20px;
-}
-
-.close-btn:hover,
-.submit-btn:hover {
-  background-color: rgb(255, 252, 249);
-}
-
-.close-btn {
-  left: 10px;
 }
 
 .submit-btn {
-  right: 10px;
+  bottom: 0px;
+  width: 100%;
+  height: 15%;
+  font-size: 100%;
+}
+
+.close-btn {
+  top: 1%;
+  right: 1%;
+  color: #000000;
+  background-color: #ffffff;
+  font-size: 120%;
 }
 
 /* for mobile screens */

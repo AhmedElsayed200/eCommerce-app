@@ -49,6 +49,18 @@ class PDP extends React.Component {
             <div className="PDP-container">
               {/* image slider */}
               <div className="slider-container">
+                <div className="row">
+                  {product.gallery.map((img, i) => (
+                    <div key={i} className="column">
+                      <img
+                        src={img}
+                        alt="product img"
+                        className="thumbnail-img"
+                        onClick={(e) => this.showImg(i, e)}
+                      />
+                    </div>
+                  ))}
+                </div>
                 {product.gallery.map((img, i) => (
                   <div
                     key={i}
@@ -72,30 +84,13 @@ class PDP extends React.Component {
                 >
                   &#10095;
                 </button>
-                <div className="row">
-                  {product.gallery.map((img, i) => (
-                    <div key={i} className="column">
-                      <img
-                        src={img}
-                        alt="product img"
-                        className="thumbnail-img"
-                        onClick={(e) => this.showImg(i, e)}
-                      />
-                    </div>
-                  ))}
-                </div>
               </div>
               {/* product info */}
               <div className="info-container">
                 <div className="name-cost-container">
-                  <p className="prod-name">
-                    {product.name}
-                    {" - "}
-                    {product.brand}
-                  </p>
-                  <p className="prod-price">
-                    {product.prices[this.props.currency.index].currency.symbol}
-                    {product.prices[this.props.currency.index].amount}
+                  <p className="prod-name-brand">
+                    <p className="prod-brand">{product.brand}</p>
+                    <p className="prod-name">{product.name}</p>
                   </p>
                 </div>
                 <AttPage

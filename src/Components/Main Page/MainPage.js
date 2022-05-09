@@ -147,6 +147,7 @@ class MainPage extends React.Component {
           <AttPage
             productID={this.state.showAtt.id}
             PDP={false}
+            currency={this.state.currency}
             addProd={this.addProd}
             closePage={this.closePage}
           />

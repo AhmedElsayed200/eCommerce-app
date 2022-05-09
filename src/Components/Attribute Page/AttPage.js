@@ -104,7 +104,7 @@ class AttPage extends React.Component {
             <form
               onSubmit={(e) => this.handleSubmit(productInf, e)}
               className={
-                this.props.PDP ? "" : "prod-att-form"
+                this.props.PDP ? "prod-att-form-PDP" : "prod-att-form"
               } /* AttPage is used by many components so the class name depends on what component called it */
             >
               <div
@@ -124,7 +124,7 @@ class AttPage extends React.Component {
                 {product.attributes.map((att) => (
                   <div className="prod-att" key={att.id}>
                     <label className="att-name">
-                      {att.name}
+                      {att.name.toUpperCase()}
                       {":"}
                     </label>
                     {att.items.map((attItem, i) => (
@@ -152,14 +152,28 @@ class AttPage extends React.Component {
                     ))}
                   </div>
                 ))}
+                {this.props.PDP ? (
+                  <div className="prod-price">
+                    <p className="price-txt">{"PRICE:"}</p>
+                    <p className="price-amount">
+                      {this.props.currency.symbol}
+                      {prodPrices[this.props.currency.index]}
+                    </p>
+                  </div>
+                ) : null}
                 {/* close and submit button */}
-                <button
-                  type="button"
-                  className="close-btn"
-                  onClick={this.closePage}
-                >
-                  CLOSE
-                </button>
+
+                {/* show the close button in the attribute popup menu only */}
+                {!this.props.PDP ? (
+                  <button
+                    type="button"
+                    className="close-btn"
+                    onClick={this.closePage}
+                  >
+                    x
+                  </button>
+                ) : null}
+
                 <input
                   type="submit"
                   value="ADD TO CART"
