@@ -87,11 +87,9 @@ class PDP extends React.Component {
               </div>
               {/* product info */}
               <div className="info-container">
-                <div className="name-cost-container">
-                  <p className="prod-name-brand">
-                    <p className="prod-brand">{product.brand}</p>
-                    <p className="prod-name">{product.name}</p>
-                  </p>
+                <div className="prod-name-brand">
+                  <p className="prod-brand">{product.brand}</p>
+                  <p className="prod-name">{product.name}</p>
                 </div>
                 <AttPage
                   productID={this.props.productID}

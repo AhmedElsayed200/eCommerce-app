@@ -104,20 +104,14 @@ class AttPage extends React.Component {
             <form
               onSubmit={(e) => this.handleSubmit(productInf, e)}
               className={
-                this.props.PDP ? "prod-att-form-PDP" : "prod-att-form"
+                this.props.PDP ? "" : "prod-att-form"
               } /* AttPage is used by many components so the class name depends on what component called it */
             >
-              <div
-                className={
-                  this.props.PDP
-                    ? "prod-att-container-PDP"
-                    : "prod-att-container"
-                }
-              >
+              <div className="prod-att-container">
                 {/* show this label if no attributes for the product */}
                 {product.attributes.length ? null : (
                   <label className="no-att-lbl">
-                    There is no attributes for this product
+                    No attributes for this product
                   </label>
                 )}
                 {/* show product attributes */}
