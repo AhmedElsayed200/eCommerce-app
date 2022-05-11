@@ -144,7 +144,6 @@ class PLP extends React.Component {
                     {products[i].prices[this.props.currencyIndex].amount}
                   </p>
                 </div>
-
               </div>
             );
           }
@@ -178,6 +177,8 @@ class PLP extends React.Component {
                   {"Next"}
                 </button>
               </div>
+              <div className="gray-layer"></div>
+
             </div>
           );
         }}

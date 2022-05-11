@@ -23,8 +23,6 @@ class CartNavbar extends React.Component {
           currency={this.props.currency}
           /* function for product quantity manipulation */
           changeProdQuantity={this.props.changeProdQuantity}
-          /* function to remove product from the cart */
-          removeProd={this.props.removeProd}
           showCart={this.props.showCart} /* function to show the cart page */
         />
       </div>

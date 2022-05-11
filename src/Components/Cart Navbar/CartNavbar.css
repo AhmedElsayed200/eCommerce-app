@@ -36,8 +36,7 @@
   display: none;
   position: absolute;
   right: 2vh;
-  min-width: 275px;
-  max-width: 325px;
+  width: 300px;
   max-height: 45%;
   background-color: white;
   font-size: 16px;

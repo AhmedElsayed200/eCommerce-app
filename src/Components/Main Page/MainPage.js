@@ -10,14 +10,17 @@ class MainPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: { title: "all" }, /* the chosen category [CartNavbar] */
-      currency: { symbol: "$", index: 0 }, /* the chosen currency [CurrencyNavbar] */
-      diffCategory: false, /* the just pressed category is differ from the privous one [PLP] */
-      showAtt: { id: "", show: false }, /* from [PLP] */
-      showProd: { id: "", show: false }, /* from [PLP] */
-      diffProd: false, /* for image slider [PDP] */
-      showCart: false, /* show cart page [CartPage] */
-      selectedProducts: [], /* selected products [CartPage] */
+      category: { title: "all" } /* the chosen category [CartNavbar] */,
+      currency: {
+        symbol: "$",
+        index: 0,
+      } /* the chosen currency [CurrencyNavbar] */,
+      diffCategory: false /* the just pressed category is differ from the privous one [PLP] */,
+      showAtt: { id: "", show: false } /* from [PLP] */,
+      showProd: { id: "", show: false } /* from [PLP] */,
+      diffProd: false /* for image slider [PDP] */,
+      showCart: false /* show cart page [CartPage] */,
+      selectedProducts: [] /* selected products [CartPage] */,
     };
     this.selectCategory = this.selectCategory.bind(this);
     this.selectCurrency = this.selectCurrency.bind(this);
@@ -29,6 +32,7 @@ class MainPage extends React.Component {
     this.changeProdQuantity = this.changeProdQuantity.bind(this);
     this.removeProd = this.removeProd.bind(this);
     this.showCart = this.showCart.bind(this);
+    this.showImgCart = this.showImgCart.bind(this);
   }
 
   /* select category, set diffCategory state and close attribute/product/cart pages */
@@ -61,11 +65,12 @@ class MainPage extends React.Component {
     /* compare between the "will be added product" with the already exist products */
     selectedProducts.forEach((prod) => {
       prod.quantity = 1;
-      if (newProdStr === JSON.stringify(prod))
-        isExist = true;
+      if (newProdStr === JSON.stringify(prod)) isExist = true;
     });
     if (isExist) {
-      alert("The product already exist in the cart"); /* don't add already exist product */
+      alert(
+        "The product already exist in the cart"
+      ); /* don't add already exist product */
     } else {
       this.setState((prevState) => ({
         selectedProducts: [...prevState.selectedProducts, newProd],
@@ -103,6 +108,8 @@ class MainPage extends React.Component {
         ...this.state,
         selectedProducts: selectedProducts,
       });
+    } else {
+      this.removeProd(indx);
     }
   };
 
@@ -119,6 +126,24 @@ class MainPage extends React.Component {
     this.setState({ showCart: true });
   };
 
+  showImgCart = (indx, num) => {
+    let selectedProducts = this.state.selectedProducts;
+    const galleryLength = selectedProducts[indx].images.length;
+    const chosenImage = selectedProducts[indx].chosenImage;
+    let newImage = chosenImage + num;
+    if (newImage > galleryLength - 1) {
+      newImage = 0;
+    } else if (newImage < 0) {
+      newImage = galleryLength - 1;
+    }
+    selectedProducts[indx].chosenImage = newImage;
+    this.setState({
+      ...this.state,
+      selectedProducts: selectedProducts,
+    });
+    console.log(selectedProducts, galleryLength);
+  };
+
   render() {
     return (
       <div id="mainPage">
@@ -132,7 +157,6 @@ class MainPage extends React.Component {
           selectedProducts={this.state.selectedProducts}
           noOfItems={this.state.selectedProducts.length}
           changeProdQuantity={this.changeProdQuantity}
-          removeProd={this.removeProd}
           showCart={this.showCart}
         />
         <PLP
@@ -168,8 +192,7 @@ class MainPage extends React.Component {
             selectedProducts={this.state.selectedProducts}
             currency={this.state.currency}
             changeProdQuantity={this.changeProdQuantity}
-            removeProd={this.removeProd}
-            closePage={this.closePage}
+            showImgCart={this.showImgCart}
           />
         ) : null}
       </div>

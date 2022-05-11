@@ -5,26 +5,22 @@ class CartPage extends React.Component {
   constructor(props) {
     super(props);
     this.handleQuantity = this.handleQuantity.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.handleViewbag = this.handleViewbag.bind(this);
+    this.handleImgSlider = this.handleImgSlider.bind(this);
   }
 
   /* products quantity manipulation */
-  handleQuantity = (indx, val, e) => {
+  handleQuantity = (indx, val) => {
     this.props.changeProdQuantity(indx, val);
-  };
-
-  handleRemove = (indx, e) => {
-    this.props.removeProd(indx);
-  };
-
-  handleClose = () => {
-    this.props.closePage();
   };
 
   handleViewbag = () => {
     this.props.showCart();
+  };
+
+  /* image change */
+  handleImgSlider = (indx, num) => {
+    this.props.showImgCart(indx, num);
   };
 
   render() {
@@ -32,7 +28,9 @@ class CartPage extends React.Component {
     const sProducts = this.props.selectedProducts;
     /* to know which called the CartPage */
     const isMiniCart = this.props.miniCart;
-    let totPrice = 0;
+    let tax = 0,
+      totQuantity = 0,
+      totPrice = 0;
     /* if no added products yet, return nothing */
     if (sProducts.length === 0) {
       return null;
@@ -57,12 +55,9 @@ class CartPage extends React.Component {
           )}
           <div className="products-cart-conatiner">
             {sProducts.map((prod, i) => (
-              <>
+              <div key={prod.id + i}>
                 {!isMiniCart ? <div className="line"></div> : null}
-                <div
-                  key={prod.id + i}
-                  className={isMiniCart ? "prod-cart-mini" : "prod-cart"}
-                >
+                <div className={isMiniCart ? "prod-cart-mini" : "prod-cart"}>
                   {/* show product info: name, brand, cost per piece and per quantity, attributes */}
                   <div className="prod-info">
                     <div
@@ -86,13 +81,20 @@ class CartPage extends React.Component {
                       {Number(
                         `${prod.prices[this.props.currency.index]}`
                       ).toFixed(2)}
-                      {/* calculate the total cost for the cart */}
+                      {/* calculate the total cost and the tax for the cart's products */}
                       <div style={{ display: "none" }}>
                         {
                           (totPrice +=
                             prod.prices[this.props.currency.index] *
                             prod.quantity)
                         }
+                        {
+                          (tax +=
+                            prod.prices[this.props.currency.index] *
+                            prod.quantity *
+                            0.21)
+                        }
+                        {(totQuantity += prod.quantity)}
                       </div>
                     </div>
                     {/* show product attributes */}
@@ -119,13 +121,36 @@ class CartPage extends React.Component {
                     </div>
                   </div>
                   {/* product image */}
-                  <div className={isMiniCart ? "img-cont-mini" : "img-cont"}>
-                    <img
-                      src={prod.image}
-                      alt={prod.name}
-                      className="prod-img"
-                    />
-                  </div>
+                  {isMiniCart ? (
+                    <div className="img-cont-mini">
+                      <img
+                        src={prod.images[0]}
+                        alt={prod.name}
+                        className="prod-img"
+                      />
+                    </div>
+                  ) : (
+                    <div className="img-cont">
+                      <img
+                        src={prod.images[prod.chosenImage]}
+                        alt={prod.name}
+                        className="prod-img"
+                      />
+                      <button
+                        className="prev-img-cart"
+                        onClick={(e) => this.handleImgSlider(i, -1, e)}
+                      >
+                        &#10094;
+                      </button>
+                      <button
+                        className="next-img-cart"
+                        onClick={(e) => this.handleImgSlider(i, 1, e)}
+                      >
+                        &#10095;
+                      </button>
+                    </div>
+                  )}
+
                   {/* products quantity manipulation */}
                   <div className="quantity-manip-btn">
                     <button
@@ -150,19 +175,12 @@ class CartPage extends React.Component {
                       -
                     </button>
                   </div>
-                  {/* remove product button */}
-                  <button
-                    className="cart-btns remove-prod"
-                    onClick={(e) => this.handleRemove(i, e)}
-                  >
-                    Remove
-                  </button>
                   <div className="clear"></div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
-          {/* cart total price */}
+          {/* tax, total price and quantity */}
           {isMiniCart ? (
             <div className="total-price">
               <p className="tot-txt">Total</p>
@@ -171,8 +189,31 @@ class CartPage extends React.Component {
                 {Number(`${totPrice}`).toFixed(2)}
               </p>
             </div>
-          ) : null}
-          {/* show "view bag button" or "back button" depinding on which called the component */}
+          ) : (
+            <>
+              {!isMiniCart ? <div className="line"></div> : null}
+
+              <div className="tax-total-price-container">
+                <div className="tax-total-price-txt">
+                  <p className="p-margin">Tax 21%:</p>
+                  <p className="p-margin">Quantity:</p>
+                  <p className="p-margin tot-txt">Total:</p>
+                </div>
+                <div className="tax-total-price-amount">
+                  <p className="p-margin p-margin">
+                    {this.props.currency.symbol}
+                    {Number(`${tax}`).toFixed(2)}
+                  </p>
+                  <p className="p-margin">{totQuantity}</p>
+                  <p className="p-margin">
+                    {this.props.currency.symbol}
+                    {Number(`${totPrice}`).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
+          {/* show "view bag button" or "order button" depending on which called the component */}
           {isMiniCart ? (
             <div className="view-check-btn">
               <button
@@ -184,9 +225,7 @@ class CartPage extends React.Component {
               <button className="cart-btns checkout-cart">CHECK OUT</button>
             </div>
           ) : (
-            <button className="cart-btns close-cart" onClick={this.handleClose}>
-              Close
-            </button>
+            <button className="cart-btns order-cart">ORDER</button>
           )}
         </div>
       </div>

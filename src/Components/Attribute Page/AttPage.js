@@ -96,7 +96,8 @@ class AttPage extends React.Component {
             brand: product.brand,
             quantity: 1,
             prices: prodPrices,
-            image: product.gallery[0],
+            images: product.gallery,
+            chosenImage: 0,
             attributes: {},
           };
 

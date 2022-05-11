@@ -109,17 +109,30 @@
   width: 15%;
   height: 100%;
   float: right;
-  /* display: flex;
-  align-items: center; */
+  position: relative;
 }
 
-/* css from PDP */
-/* .prod-img {
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  display: block;
-} */
+/* image button change */
+
+.prev-img-cart,
+.next-img-cart {
+  position: absolute;
+  bottom: 15px;
+
+  font-size: 70%;
+
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.73);
+  cursor: pointer;
+}
+
+.prev-img-cart {
+  right: 40px;
+}
+
+.next-img-cart {
+  right: 15px;
+}
 
 /* cart buttons */
 
@@ -129,7 +142,6 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  /* width: 5%; */
   height: 100%;
   margin-right: 1%;
 }
@@ -142,6 +154,7 @@
   cursor: pointer;
 }
 
+/* increment - decrement button*/
 .inc-quantity-btn,
 .dec-quantity-btn {
   width: 40px;
@@ -151,29 +164,17 @@
   border: 1px solid #000000;
 }
 
-/* .remove-prod,
-.close-cart {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 70px;
-  height: 20px;
-  font-size: 80%;
-  border-radius: 5px;
-  background-color: rgba(94, 203, 123, 1);
-} */
-
-.remove-prod,
-.close-cart {
-  display: none;
-}
-
-/* .inc-quantity-btn:hover,
-.dec-quantity-btn:hover {
-  background-color: rgba(94, 203, 123, 1);
+/* order button */
+.order-cart {
+  width: 220px;
+  height: 40px;
+  font-size: 60%;
+  font-weight: 600;
   color: #ffffff;
+  background-color: #5ece7b;
   border: none;
-} */
+  margin-bottom: 100px;
+}
 
 .quantity-txt {
   font-size: 110%;
@@ -183,10 +184,28 @@
   clear: both;
 }
 
-.tot-price {
-  font-size: 90%;
+/* total price and tax in cart page */
+
+.tax-total-price-container {
+  display: flex;
+  font-size: 80%;
+  margin: 20px 0 10px 0;
+}
+
+.tax-total-price-txt {
+  margin-right: 3px;
+}
+
+.tot-txt {
   font-weight: bold;
-  margin: 0;
+}
+
+.tax-total-price-amount {
+  font-weight: bold;
+}
+
+.p-margin {
+  margin: 0 0 5px 0;
 }
 
 /* for mobile screens */
@@ -213,12 +232,6 @@
   .inc-quantity-btn,
   .dec-quantity-btn {
     width: 20px;
-    height: 20px;
-  }
-  .remove-prod,
-  .close-cart {
-    display: none;
-    width: 60px;
     height: 20px;
   }
   .tot-price {

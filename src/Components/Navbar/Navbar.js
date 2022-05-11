@@ -23,7 +23,6 @@ class Navbar extends React.Component {
             changeProdQuantity={this.props.changeProdQuantity}
             noOfItems={this.props.noOfItems}
             currency={this.props.currency}
-            removeProd={this.props.removeProd}
             showCart={this.props.showCart}
           />
         </div>
