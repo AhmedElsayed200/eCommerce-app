@@ -14,7 +14,9 @@ class CartPage extends React.Component {
     this.props.changeProdQuantity(indx, val);
   };
 
+  /* view cart page */
   handleViewbag = () => {
+    this.props.ShowHideCartOverlay(); /* hide cartoverlay */
     this.props.showCart();
   };
 
@@ -47,7 +49,7 @@ class CartPage extends React.Component {
                 {sProducts.length > 1
                   ? sProducts.length + " items"
                   : sProducts.length + " item"}
-                {}
+                { }
               </span>
             </p>
           ) : (

@@ -4,17 +4,20 @@ import downArrow from "../../images/down-arrow.png";
 import upArrow from "../../images/up-arrow.png";
 import { CURRENCIES_QUERY } from "../../GraphQL/queries";
 import { Query } from "@apollo/client/react/components";
+import ShowHideComponent from "../Show Hide Component/ShowHideComponent";
 
 class CurrencyNavbar extends React.Component {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
+    this.handleCurrChoice = this.handleCurrChoice.bind(this);
     this.flipUp = this.flipUp.bind(this);
     this.flibDown = this.flibDown.bind(this);
+    this.handleShowCurrOverlay = this.handleShowCurrOverlay.bind(this);
   }
 
   /* select currency */
-  handleClick = (currSymbol, indx) => {
+  handleCurrChoice = (currSymbol, indx) => {
+    this.handleShowCurrOverlay();
     this.props.selectCurrency(currSymbol, indx);
   };
 
@@ -30,6 +33,13 @@ class CurrencyNavbar extends React.Component {
     arrow.src = downArrow;
   };
 
+  /* show and hide currency overlay */
+  handleShowCurrOverlay = () => {
+    if (this.props.showCurrOverlay) this.flibDown();
+    else this.flipUp();
+    this.props.showHideCurrOverlay();
+  };
+
   render() {
     return (
       <Query query={CURRENCIES_QUERY}>
@@ -38,27 +48,31 @@ class CurrencyNavbar extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const { currencies } = data;
+          const currOverlay = (
+            <div id="currDropdownContent">
+              {currencies.map((currency, i) => (
+                <p
+                  key={i}
+                  onClick={(e) => this.handleCurrChoice(currency.symbol, i, e)}
+                  className="currSymbol"
+                >
+                  {currency.symbol} {currency.label}
+                </p>
+              ))}
+            </div>
+          );
 
           return (
-            <div
-              id="currDropdownContainer"
-              onMouseOver={this.flipUp}
-              onMouseLeave={this.flibDown}
-            >
-              <button id="currBtn">
+            <div id="currDropdownContainer">
+              <button id="currBtn" onClick={this.handleShowCurrOverlay}>
                 {this.props.currency.symbol}
                 <img src={downArrow} alt="down arrow" id="currArrow" />
               </button>
-              <div id="currDropdownContent">
-                {currencies.map((currency, i) => (
-                  <p
-                    key={i}
-                    onClick={(e) => this.handleClick(currency.symbol, i, e)}
-                  >
-                    {currency.symbol} {currency.label}
-                  </p>
-                ))}
-              </div>
+              <ShowHideComponent
+                show={this.props.showCurrOverlay}
+                onClickOutside={this.handleShowCurrOverlay}
+                component={currOverlay}
+              />
             </div>
           );
         }}

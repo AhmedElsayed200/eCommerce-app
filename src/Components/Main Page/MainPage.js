@@ -15,10 +15,12 @@ class MainPage extends React.Component {
         symbol: "$",
         index: 0,
       } /* the chosen currency [CurrencyNavbar] */,
+      showCurrOverlay: false, /* show currency overlay [CurrencyNavbar] */
       diffCategory: false /* the just pressed category is differ from the privous one [PLP] */,
       showAtt: { id: "", show: false } /* from [PLP] */,
       showProd: { id: "", show: false } /* from [PLP] */,
       diffProd: false /* for image slider [PDP] */,
+      showCartOverlay: false /* show cart overlay [CartPage] */,
       showCart: false /* show cart page [CartPage] */,
       selectedProducts: [] /* selected products [CartPage] */,
     };
@@ -33,6 +35,8 @@ class MainPage extends React.Component {
     this.removeProd = this.removeProd.bind(this);
     this.showCart = this.showCart.bind(this);
     this.showImgCart = this.showImgCart.bind(this);
+    this.showHideCartOverlay = this.showHideCartOverlay.bind(this);
+    this.showHideCurrOverlay = this.showHideCurrOverlay.bind(this);
   }
 
   /* select category, set diffCategory state and close attribute/product/cart pages */
@@ -126,6 +130,7 @@ class MainPage extends React.Component {
     this.setState({ showCart: true });
   };
 
+  /* image slider in cart page */
   showImgCart = (indx, num) => {
     let selectedProducts = this.state.selectedProducts;
     const galleryLength = selectedProducts[indx].images.length;
@@ -141,7 +146,22 @@ class MainPage extends React.Component {
       ...this.state,
       selectedProducts: selectedProducts,
     });
-    console.log(selectedProducts, galleryLength);
+  };
+
+  /* toggle the cart overlay appearance */
+  showHideCartOverlay = () => {
+    this.setState({
+      ...this.state,
+      showCartOverlay: !this.state.showCartOverlay,
+    });
+  };
+
+  /* toggle the currency overlay appearance */
+  showHideCurrOverlay = () => {
+    this.setState({
+      ...this.state,
+      showCurrOverlay: !this.state.showCurrOverlay,
+    });
   };
 
   render() {
@@ -152,12 +172,16 @@ class MainPage extends React.Component {
           selectCategory={this.selectCategory}
           /* for CurrencyNavbar component*/
           selectCurrency={this.selectCurrency}
-          currency={this.state.currency} /* for CurrencyNavbar*/
+          showCurrOverlay={this.state.showCurrOverlay}
+          currency={this.state.currency}
+          showHideCurrOverlay={this.showHideCurrOverlay}
           /* for CartPage component */
           selectedProducts={this.state.selectedProducts}
           noOfItems={this.state.selectedProducts.length}
+          showCartOverlay={this.state.showCartOverlay}
           changeProdQuantity={this.changeProdQuantity}
           showCart={this.showCart}
+          showHideCartOverlay={this.showHideCartOverlay}
         />
         <PLP
           category={this.state.category}

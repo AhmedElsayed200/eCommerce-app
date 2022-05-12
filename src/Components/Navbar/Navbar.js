@@ -17,13 +17,17 @@ class Navbar extends React.Component {
           <CurrencyNavbar
             selectCurrency={this.props.selectCurrency}
             currency={this.props.currency}
+            showCurrOverlay={this.props.showCurrOverlay}
+            showHideCurrOverlay={this.props.showHideCurrOverlay}
           />
           <CartNavbar
             selectedProducts={this.props.selectedProducts}
             changeProdQuantity={this.props.changeProdQuantity}
             noOfItems={this.props.noOfItems}
+            showCartOverlay={this.props.showCartOverlay}
             currency={this.props.currency}
             showCart={this.props.showCart}
+            showHideCartOverlay={this.props.showHideCartOverlay}
           />
         </div>
       </nav>
