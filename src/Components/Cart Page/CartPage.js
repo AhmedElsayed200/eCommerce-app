@@ -1,5 +1,6 @@
 import React from "react";
 import "./CartPage.css";
+import AttPage from "../Attribute Page/AttPage";
 
 class CartPage extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class CartPage extends React.Component {
 
   /* view cart page */
   handleViewbag = () => {
-    this.props.ShowHideCartOverlay(); /* hide cartoverlay */
+    this.props.showHideCartOverlay(); /* hide cart overlay */
     this.props.showCart();
   };
 
@@ -49,7 +50,7 @@ class CartPage extends React.Component {
                 {sProducts.length > 1
                   ? sProducts.length + " items"
                   : sProducts.length + " item"}
-                { }
+                {}
               </span>
             </p>
           ) : (
@@ -100,27 +101,12 @@ class CartPage extends React.Component {
                       </div>
                     </div>
                     {/* show product attributes */}
-                    <div className="prod-att-cart">
-                      {Object.keys(prod.attributes).map((key) => (
-                        <div className="att-row-cart" key={key}>
-                          <span className="att-name-cart">{key}: </span>
-                          {/* if color attribute, show color itself */}
-                          {key === "Color" ? (
-                            <span
-                              className="att-val-cart prod-color-cart"
-                              style={{
-                                backgroundColor: `${prod.attributes[key]}`,
-                              }}
-                            ></span>
-                          ) : (
-                            <span className="att-val-cart">
-                              {prod.attributes[key]}
-                            </span>
-                          )}
-                          <br />
-                        </div>
-                      ))}
-                    </div>
+                    <AttPage
+                      productID={prod.id}
+                      selAtt={prod.attributes}
+                      cart={true}
+                      miniCart={isMiniCart}
+                    />
                   </div>
                   {/* product image */}
                   {isMiniCart ? (

@@ -90,7 +90,7 @@ class AttPage extends React.Component {
           /* array of prices per product*/
           let prodPrices = product.prices.map((curr) => curr.amount);
           /* all the necessary info of the added product */
-          let productInf = {
+          let productInfo = {
             id: this.props.productID,
             name: product.name,
             brand: product.brand,
@@ -100,15 +100,20 @@ class AttPage extends React.Component {
             chosenImage: 0,
             attributes: {},
           };
+          const isPDPorCart =
+            this.props.PDP || this.props.cart || this.props.isMiniCart;
+          const isPDP = this.props.PDP;
+          const isCart = this.props.cart;
+          const isMiniCart = this.props.miniCart;
 
           return (
             <form
-              onSubmit={(e) => this.handleSubmit(productInf, e)}
+              onSubmit={(e) => this.handleSubmit(productInfo, e)}
               className={
-                this.props.PDP ? "" : "prod-att-form"
+                isPDPorCart ? "" : "prod-att-form"
               } /* AttPage is used by many components so the class name depends on what component called it */
             >
-              <div className="prod-att-container">
+              <div className={isPDPorCart ? "" : "prod-att-container"}>
                 {/* show this label if no attributes for the product */}
                 {product.attributes.length ? null : (
                   <label className="no-att-lbl">
@@ -116,25 +121,48 @@ class AttPage extends React.Component {
                   </label>
                 )}
                 {/* show product attributes */}
-                {product.attributes.map((att) => (
-                  <div className="prod-att" key={att.id}>
+                {product.attributes.map((att, i) => (
+                  <div
+                    className={
+                      isCart
+                        ? isMiniCart
+                          ? "prod-att-minicart"
+                          : "prod-att-cart"
+                        : "prod-att"
+                    }
+                    key={i}
+                  >
                     <label className="att-name">
                       {att.name.toUpperCase()}
                       {":"}
                     </label>
                     {att.items.map((attItem, i) => (
                       <label className="att-val-lbl" key={i}>
-                        <input
-                          type="radio"
-                          name={att.id}
-                          value={attItem.value}
-                          checked={
-                            this.state.attributes[att.name] ===
-                            `${attItem.value}`
-                          }
-                          onChange={this.handleSelection}
-                          className="radio-input"
-                        />
+                        {this.props.cart ? (
+                          <input
+                            type="radio"
+                            name={att.name}
+                            value={attItem.value}
+                            checked={
+                              this.props.selAtt[att.name] === `${attItem.value}`
+                            }
+                            onChange={this.handleSelection}
+                            className="radio-input"
+                          />
+                        ) : (
+                          <input
+                            type="radio"
+                            name={att.name}
+                            value={attItem.value}
+                            checked={
+                              this.state.attributes[att.name] ===
+                              `${attItem.value}`
+                            }
+                            onChange={this.handleSelection}
+                            className="radio-input"
+                          />
+                        )}
+
                         {att.type !== "swatch" ? (
                           <span className="att-val-span">{attItem.value}</span>
                         ) : (
@@ -147,7 +175,8 @@ class AttPage extends React.Component {
                     ))}
                   </div>
                 ))}
-                {this.props.PDP ? (
+
+                {isPDP ? (
                   <div className="prod-price">
                     <p className="price-txt">{"PRICE:"}</p>
                     <p className="price-amount">
@@ -159,7 +188,7 @@ class AttPage extends React.Component {
                 {/* close and submit button */}
 
                 {/* show the close button in the attribute popup menu only */}
-                {!this.props.PDP ? (
+                {isPDPorCart ? null : (
                   <button
                     type="button"
                     className="close-btn"
@@ -167,13 +196,15 @@ class AttPage extends React.Component {
                   >
                     x
                   </button>
-                ) : null}
+                )}
 
-                <input
-                  type="submit"
-                  value="ADD TO CART"
-                  className="submit-btn"
-                />
+                {!this.props.cart ? (
+                  <input
+                    type="submit"
+                    value="ADD TO CART"
+                    className="submit-btn"
+                  />
+                ) : null}
               </div>
             </form>
           );

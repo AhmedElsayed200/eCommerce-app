@@ -54,7 +54,6 @@ export const PRODUCT_ATT_QUERY = gql`
           amount 
         }   
         attributes{ 
-          id 
           name 
           type 
           items{ 

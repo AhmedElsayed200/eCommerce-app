@@ -39,7 +39,7 @@ class CartNavbar extends React.Component {
           {cartItems ? <p id="cartItemNum"> {cartItems} </p> : null}
         </button>
         {/* show the minicart while clicking on shopping cart in navbar*/}
-        {this.props.showCartOverlay ? (
+        {this.props.showCartOverlay && cartItems ? (
           <div className="minicart-filter">
             {
               <ShowHideComponent

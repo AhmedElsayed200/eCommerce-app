@@ -67,9 +67,11 @@ class MainPage extends React.Component {
     let selectedProducts = this.state.selectedProducts;
     let isExist = false;
     /* compare between the "will be added product" with the already exist products */
-    selectedProducts.forEach((prod) => {
-      prod.quantity = 1;
-      if (newProdStr === JSON.stringify(prod)) isExist = true;
+    selectedProducts.forEach((p) => {
+      const q = p.quantity;
+      p.quantity = 1
+      if (newProdStr === JSON.stringify(p)) isExist = true;
+      p.quantity = q; /* product saves its original quantity */
     });
     if (isExist) {
       alert(
@@ -81,6 +83,7 @@ class MainPage extends React.Component {
       }));
       alert("Product has been added to the Cart");
     }
+    console.log(this.state.selectedProducts)
   };
 
   /* close attribute/product/cart pages */

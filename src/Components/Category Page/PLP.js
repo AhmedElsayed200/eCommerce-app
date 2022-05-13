@@ -177,8 +177,6 @@ class PLP extends React.Component {
                   {"Next"}
                 </button>
               </div>
-              <div className="gray-layer"></div>
-
             </div>
           );
         }}

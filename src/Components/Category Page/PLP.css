@@ -8,16 +8,6 @@
   align-content: start;
 }
 
-/* gray layer */
-.gray-layer {
-  display: none;
-  position: absolute;
-  left: -13%;
-  width: 100rem;
-  height: 124vh;
-  background: rgba(57, 55, 72, 0.22);
-}
-
 /* category name*/
 p.categName {
   display: flex;

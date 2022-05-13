@@ -131,7 +131,7 @@
 @media only screen and (max-width: 720px) {
   .PDP-container {
     top: 25vh;
-    height: 157vh; /* to cover all the height */
+    height: 100rem; /* to cover all the height */
     align-items: start;
     flex-direction: column; /* items aligned vertically*/
     align-items: center;
