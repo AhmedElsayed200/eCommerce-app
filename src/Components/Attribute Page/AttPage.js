@@ -140,10 +140,17 @@ class AttPage extends React.Component {
                     }
                     key={i}
                   >
-                    <label className="att-name">
-                      {att.name.toUpperCase()}
-                      {":"}
-                    </label>
+                    {isMiniCart ? (
+                      <label className="att-name-minicart">
+                        {att.name.charAt(0).toUpperCase() + att.name.slice(1)}
+                        {":"}
+                      </label>
+                    ) : (
+                      <label className="att-name">
+                        {att.name.toUpperCase()}
+                        {":"}
+                      </label>
+                    )}
                     {att.items.map((attItem, i) => (
                       <label className="att-val-lbl" key={i}>
                         {this.props.cart ? (

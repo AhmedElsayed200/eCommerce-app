@@ -14,6 +14,8 @@ p.categName {
   grid-column: 1/4;
   font-size: 200%;
   align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 }
 
 /* product item */
@@ -24,6 +26,7 @@ p.categName {
   grid-template-columns: 100%;
   grid-template-rows: 80% 20%;
   padding: 16px;
+  row-gap: 10px;
 }
 
 .bef-buy-prod:hover {
@@ -53,6 +56,17 @@ p.out-of-stock-text {
   font-weight: 400;
   color: #8d8f9a;
   width: 100%;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+
+.product-content-outstock {
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: #8d8f9a;
 }
 
 img.product-img {
@@ -65,17 +79,26 @@ img.product-img {
 .product-content {
   overflow: auto;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   flex-direction: column;
 }
 
 .product-name-brand,
 .product-price {
-  margin: 4% 0 0 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+.product-name-brand {
+  font-weight: 300;
 }
 
 .product-price {
-  font-weight: bold;
+  font-weight: 500;
+}
+
+.product-price {
+  margin-top: 5px;
 }
 
 /* PLP buttons */
@@ -92,12 +115,13 @@ img.product-img {
 
 .prev-page-btn,
 .next-page-btn {
-  padding: 10px;
   font-size: 100%;
   border: 1px solid #000000;
   border-radius: 30px;
   cursor: pointer;
   background-color: #ffffff;
+  width: 90px;
+  height: 35px;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -120,7 +144,7 @@ img.product-img {
   align-items: center;
   position: absolute;
   bottom: -5%;
-  right: 10%;
+  right: 5%;
   background-color: #5ece7b;
   border: none;
   border-radius: 50%;

@@ -28,6 +28,8 @@
   background-color: #000000;
   color: #ffffff;
   border-radius: 50%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
 }
 
 .item-num-txt {
@@ -56,7 +58,7 @@
 
 .prod-cart-mini {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
 }
@@ -85,7 +87,9 @@
 .view-cart,
 .checkout-cart {
   width: 48%;
-  height: 35px;
+  height: 40px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
 }
 
 .view-cart {
@@ -113,27 +117,34 @@
 /* mini-cart info */
 
 .mybag {
-  font-weight: bold;
+  font-weight: 700;
+}
+
+.items-txt {
+  font-weight: 500;
 }
 
 .cart-name-mini {
-  margin: 0;
+  font-family: "Raleway", sans-serif;
+  margin: 10px 0 0 0;
 }
 
 .prod-name-brand-mini {
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
   font-size: 100%;
-  margin-bottom: 5%;
+  margin-bottom: 7%;
 }
 
 .prod-brand-mini {
   margin: 0;
-  font-weight: normal;
 }
 
 .prod-price-cart-mini {
+  font-family: "Raleway", sans-serif;
   font-size: 80%;
   font-weight: 500;
-  margin-bottom: 5%;
+  margin-bottom: 7%;
 }
 
 /* mini-cart total price */
@@ -141,7 +152,7 @@
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  font-size: 80%;
+  font-size: 90%;
   margin: 20px 0;
 }
 

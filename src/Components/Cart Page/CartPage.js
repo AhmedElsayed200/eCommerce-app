@@ -50,7 +50,7 @@ class CartPage extends React.Component {
                 {sProducts.length > 1
                   ? sProducts.length + " items"
                   : sProducts.length + " item"}
-                {}
+                { }
               </span>
             </p>
           ) : (
@@ -77,7 +77,7 @@ class CartPage extends React.Component {
                       >
                         {prod.brand}
                       </p>
-                      <p className="prod-name-cart">{prod.name}</p>
+                      <p className={isMiniCart ? "prod-name-minicart" : "prod-name-cart"}>{prod.name}</p>
                     </div>
                     <div
                       className={
@@ -189,7 +189,7 @@ class CartPage extends React.Component {
                   <p className="p-margin tot-txt">Total:</p>
                 </div>
                 <div className="tax-total-price-amount">
-                  <p className="p-margin p-margin">
+                  <p className="p-margin">
                     {this.props.currency.symbol}
                     {Number(`${tax}`).toFixed(2)}
                   </p>

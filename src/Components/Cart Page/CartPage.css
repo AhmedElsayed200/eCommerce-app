@@ -20,6 +20,8 @@
 .cart-name {
   font-size: 170%;
   margin: 0 0 4% 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
 }
 
 /* line separator */
@@ -43,16 +45,23 @@
 
 .prod-name-brand-cart {
   font-size: 120%;
-  margin-bottom: 5%;
+  margin-bottom: 6%;
+  font-family: "Raleway", sans-serif;
 }
 
 .prod-brand-cart {
   margin: 0;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .prod-name-cart {
-  margin: 1% 0 0 0;
+  margin: 3% 0 0 0;
+  font-weight: 400;
+}
+
+.prod-name-minicart {
+  margin: 3% 0 0 0;
+  font-weight: 300;
 }
 
 /* product image */
@@ -67,8 +76,9 @@
 
 .prod-price-cart {
   font-size: 90%;
-  font-weight: bold;
-  margin-bottom: 5%;
+  margin-bottom: 6%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
 }
 
 /* color attribute */
@@ -159,26 +169,37 @@
 .quantity-txt {
   font-size: 110%;
   color: #1d1f22;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
 }
 
 /* total price and tax in cart page */
 
 .tax-total-price-container {
   display: flex;
-  font-size: 80%;
+  font-size: 100%;
   margin: 20px 0 10px 0;
 }
 
 .tax-total-price-txt {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
   margin-right: 3px;
 }
 
 .tot-txt {
-  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.tot-amount {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
 }
 
 .tax-total-price-amount {
-  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
 }
 
 .p-margin {

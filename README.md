@@ -15,7 +15,7 @@ An e-commerce web app created with react.js fetches products from a graphql endp
 - Clicking on the product’s image from the product list page will show more information about the product; eg. all the product images will be shown on this page as a slider design.
 - The user can also add the product to the cart from the product description page.
 - A number will be shown next to the cart shopping image in the navbar while adding any product to indicate the number of items in the cart.
-- To open the cart, the user should hover on the cart shopping image in the navbar.
+- To open the cart, the user should click on the cart shopping image in the navbar.
 - The user can remove a product or increase/decrease its quantity in the cart.
 - It is not possible to add a project that already exists in the cart (a same project with same attributes).
 - The website is responsive over all the screens.
@@ -50,6 +50,12 @@ The dependencies used in this application with its version:
 
 > The website is now working, hope you enjoy it 😃
 
-## Tour in the website (See below video) &darr;
+## Tour in the website (See below videos)
+
+### Updated version &darr;
+
+<a href="https://youtu.be/XPlWgpl2aDs" target="_blank"><img src="src/images/website2.png" alt="Tour in the website" width="500px" height="300px" border="3px" /></a>
+
+### Older version &darr;
 
 <a href="https://youtu.be/Ql6-HwzI6cs" target="_blank"><img src="src/images/website.png" alt="Tour in the website" width="500px" height="300px" border="3px" /></a>

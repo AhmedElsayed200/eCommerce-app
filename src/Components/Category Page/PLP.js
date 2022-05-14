@@ -132,9 +132,9 @@ class PLP extends React.Component {
                   </button>
                 </div>
                 {/* product info */}
-                <div className="product-content">
+                <div className={products[i].inStock ? "product-content" : "product-content-outstock"}>
                   <p className="product-name-brand">
-                    {products[i].name} {"-"} {products[i].brand}
+                    {products[i].brand}{" "}{products[i].name}
                   </p>
                   <p className="product-price">
                     {
@@ -168,13 +168,13 @@ class PLP extends React.Component {
                   className="prev-page-btn"
                   onClick={(e) => this.handlePageChange(allProdLength, e)}
                 >
-                  {"Previous"}
+                  &laquo;{" Previous"}
                 </button>
                 <button
                   className="next-page-btn"
                   onClick={(e) => this.handlePageChange(allProdLength, e)}
                 >
-                  {"Next"}
+                  {"Next "}&raquo;
                 </button>
               </div>
             </div>

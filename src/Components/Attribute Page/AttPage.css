@@ -22,10 +22,12 @@
   margin-left: 3%;
   width: 290px;
   height: 70px;
+  margin-bottom: 10px;
 }
 
 /* attribute name */
 .att-name,
+.att-name-minicart,
 .no-att-lbl {
   display: flex;
   align-items: center;
@@ -33,6 +35,17 @@
   height: 40%;
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+.att-name {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 100%;
+}
+
+.att-name-minicart {
+  font-size: 120%;
+  font-weight: 400 !important;
 }
 
 .no-att-lbl-cart {
@@ -64,7 +77,9 @@
   background-color: #ffffff;
   border: 1px solid #000000;
   cursor: pointer;
-  font-size: 80%;
+  font-size: 90%;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
 }
 
 /* not attribute label */
@@ -81,7 +96,8 @@ input[type="radio"]:checked + .att-val-span {
   color: #ffffff;
 }
 
-input[type="radio"]:checked + .prod-color {
+input[type="radio"]:checked + .prod-color,
+input[type="radio"]:checked + .prod-color-minicart {
   outline: #5ece7b solid 1px;
   outline-offset: 1px;
 }
@@ -103,8 +119,10 @@ input[type="radio"]:checked + .prod-color {
   bottom: 0px;
   width: 94%;
   height: 50px;
-  font-size: 100%;
+  font-size: 90%;
   margin: 3%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
 }
 
 .close-btn {
@@ -138,7 +156,7 @@ input[type="radio"]:checked + .prod-color {
 .prod-att-minicart {
   width: 140px;
   height: 40px;
-  font-size: 10px;
+  font-size: 11px;
   margin-bottom: 10px;
 }
 
