@@ -36,7 +36,7 @@ class CartNavbar extends React.Component {
       <div id="cartDropdownContainer">
         <button id="cartDropdownBtn" onClick={this.handleShowCartOverlay}>
           <img src={shoppingCart} alt="Shopping Cart" />
-          {cartItems ? <p id="cartItemNum"> {cartItems} </p> : null}
+          {cartItems ? <div id="cartItemNum"><p className="item-num-txt"> {cartItems} </p></div> : null}
         </button>
         {/* show the minicart while clicking on shopping cart in navbar*/}
         {this.props.showCartOverlay && cartItems ? (

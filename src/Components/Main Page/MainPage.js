@@ -83,7 +83,6 @@ class MainPage extends React.Component {
       }));
       alert("Product has been added to the Cart");
     }
-    console.log(this.state.selectedProducts)
   };
 
   /* close attribute/product/cart pages */

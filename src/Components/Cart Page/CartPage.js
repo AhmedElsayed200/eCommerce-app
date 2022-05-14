@@ -79,7 +79,11 @@ class CartPage extends React.Component {
                       </p>
                       <p className="prod-name-cart">{prod.name}</p>
                     </div>
-                    <div className="prod-price-cart">
+                    <div
+                      className={
+                        isMiniCart ? "prod-price-cart-mini" : "prod-price-cart"
+                      }
+                    >
                       {this.props.currency.symbol}
                       {Number(
                         `${prod.prices[this.props.currency.index]}`
@@ -108,62 +112,59 @@ class CartPage extends React.Component {
                       miniCart={isMiniCart}
                     />
                   </div>
-                  {/* product image */}
-                  {isMiniCart ? (
-                    <div className="img-cont-mini">
-                      <img
-                        src={prod.images[0]}
-                        alt={prod.name}
-                        className="prod-img"
-                      />
-                    </div>
-                  ) : (
-                    <div className="img-cont">
-                      <img
-                        src={prod.images[prod.chosenImage]}
-                        alt={prod.name}
-                        className="prod-img"
-                      />
-                      <button
-                        className="prev-img-cart"
-                        onClick={(e) => this.handleImgSlider(i, -1, e)}
-                      >
-                        &#10094;
-                      </button>
-                      <button
-                        className="next-img-cart"
-                        onClick={(e) => this.handleImgSlider(i, 1, e)}
-                      >
-                        &#10095;
-                      </button>
-                    </div>
-                  )}
+                  {/* product image and products quantity manipulation */}
 
-                  {/* products quantity manipulation */}
-                  <div className="quantity-manip-btn">
-                    <button
-                      className={
+                  <div className={isMiniCart ? "img-cont-mini" : "img-cont"}>
+                    <div className="quantity-manip-btn">
+                      <button
+                        className={
+                          isMiniCart
+                            ? "cart-btns inc-quantity-btn-mini"
+                            : "cart-btns inc-quantity-btn"
+                        }
+                        onClick={(e) => this.handleQuantity(i, 1, e)}
+                      >
+                        +
+                      </button>
+                      <p className="quantity-txt">{prod.quantity}</p>
+                      <button
+                        className={
+                          isMiniCart
+                            ? "cart-btns dec-quantity-btn-mini"
+                            : "cart-btns dec-quantity-btn"
+                        }
+                        onClick={(e) => this.handleQuantity(i, -1, e)}
+                      >
+                        -
+                      </button>
+                    </div>
+                    <img
+                      src={
                         isMiniCart
-                          ? "cart-btns inc-quantity-btn-mini"
-                          : "cart-btns inc-quantity-btn"
+                          ? prod.images[0]
+                          : prod.images[prod.chosenImage]
                       }
-                      onClick={(e) => this.handleQuantity(i, 1, e)}
-                    >
-                      +
-                    </button>
-                    <p className="quantity-txt">{prod.quantity}</p>
-                    <button
-                      className={
-                        isMiniCart
-                          ? "cart-btns dec-quantity-btn-mini"
-                          : "cart-btns dec-quantity-btn"
-                      }
-                      onClick={(e) => this.handleQuantity(i, -1, e)}
-                    >
-                      -
-                    </button>
+                      alt={prod.name}
+                      className="prod-img-cart"
+                    />
+                    {/* image slider buttons */}
+                    {!isMiniCart ? (
+                      <>
+                        <button
+                          className="prev-img-cart"
+                          onClick={(e) => this.handleImgSlider(i, -1, e)}
+                        >
+                          &#10094;
+                        </button>
+                        <button
+                          className="next-img-cart"
+                          onClick={(e) => this.handleImgSlider(i, 1, e)}
+                        >
+                          &#10095;
+                        </button>
+                      </>
+                    ) : null}
                   </div>
-                  <div className="clear"></div>
                 </div>
               </div>
             ))}

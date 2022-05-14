@@ -32,25 +32,18 @@
 /* product container [info, buttons, image] */
 .prod-cart {
   width: 100%;
-  height: 300px;
-  position: relative;
-  margin: 2% 0;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* product info container [name, brand, price, attributes] */
-.prod-info {
-  width: 50%;
-  height: 100%;
-  float: left;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
 
 /* product name and brand */
 
 .prod-name-brand-cart {
-  font-size: 150%;
+  font-size: 120%;
+  margin-bottom: 5%;
 }
 
 .prod-brand-cart {
@@ -62,11 +55,20 @@
   margin: 1% 0 0 0;
 }
 
+/* product image */
+
+.prod-img-cart {
+  display: block;
+  width: 90%;
+  height: 100%;
+}
+
 /* product price */
 
 .prod-price-cart {
-  font-size: 100%;
+  font-size: 90%;
   font-weight: bold;
+  margin-bottom: 5%;
 }
 
 /* color attribute */
@@ -81,10 +83,13 @@
 /* product image */
 
 .img-cont {
-  width: 25%;
-  height: 100%;
-  float: right;
+  width: 200px;
+  min-width: 20%;
+  height: 200px;
+  /* float: right; */
   position: relative;
+  display: flex;
+  align-self: center;
 }
 
 /* image button change */
@@ -113,12 +118,11 @@
 
 .quantity-manip-btn {
   display: flex;
-  float: right;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  height: 100%;
-  margin-right: 1%;
+
+  margin-right: 4%;
 }
 
 .cart-btns {
@@ -132,11 +136,12 @@
 /* increment - decrement button*/
 .inc-quantity-btn,
 .dec-quantity-btn {
-  width: 40px;
-  height: 40px;
-  font-size: 200%;
+  width: 30px;
+  height: 30px;
+  font-size: 150%;
   background-color: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #1d1f22;
+  color: #1d1f22;
 }
 
 /* order button */
@@ -153,10 +158,7 @@
 
 .quantity-txt {
   font-size: 110%;
-}
-
-.clear {
-  clear: both;
+  color: #1d1f22;
 }
 
 /* total price and tax in cart page */
@@ -210,16 +212,17 @@
     margin-top: 8%;
   }
   .img-cont {
-    width: 30%;
-  }
-  .prod-cart {
-    height: 230px;
-  }
-  .prod-att-cart {
-    font-size: 91%;
-  }
-  .img-cont {
     width: 40%;
+    height: 140px;
+  }
+  .prod-img-cart {
+    width: 80%;
+  }
+  .prev-img-cart {
+    right: 30px;
+  }
+  .next-img-cart {
+    right: 5px;
   }
   .prod-name-brand-cart {
     font-size: 100%;

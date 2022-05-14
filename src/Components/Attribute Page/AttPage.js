@@ -116,7 +116,15 @@ class AttPage extends React.Component {
               <div className={isPDPorCart ? "" : "prod-att-container"}>
                 {/* show this label if no attributes for the product */}
                 {product.attributes.length ? null : (
-                  <label className="no-att-lbl">
+                  <label
+                    className={
+                      isCart
+                        ? isMiniCart
+                          ? "no-att-lbl-minicart"
+                          : "no-att-lbl-cart"
+                        : "no-att-lbl"
+                    }
+                  >
                     No attributes for this product
                   </label>
                 )}
@@ -167,7 +175,11 @@ class AttPage extends React.Component {
                           <span className="att-val-span">{attItem.value}</span>
                         ) : (
                           <span
-                            className="att-val-span prod-color"
+                            className={
+                              isMiniCart
+                                ? "att-val-span prod-color-minicart"
+                                : "att-val-span prod-color"
+                            }
                             style={{ backgroundColor: `${attItem.value}` }}
                           ></span>
                         )}
