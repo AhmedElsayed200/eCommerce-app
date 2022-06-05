@@ -48,6 +48,7 @@ export const PRODUCT_ATT_QUERY = gql`
     product(id: $id){
         id
         name
+        inStock
         brand
         gallery
         prices{  

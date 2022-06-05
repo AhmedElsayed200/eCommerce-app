@@ -60,14 +60,18 @@ class AttPage extends React.Component {
   };
 
   /* add a product to the cart */
-  handleSubmit = (pInfo, e) => {
+  handleSubmit = (pInfo, inStock, e) => {
     e.preventDefault();
     const attState = this.state.attributes;
     let selectedProd = pInfo;
     for (let att in attState) {
       if (attState[att] !== "") selectedProd.attributes[att] = attState[att];
     }
-    if (this.formValidation()) {
+    if (!inStock) {
+      alert(
+        "This product is not in stock"
+      ); /* can't add a product if it is not in stock */
+    } else if (this.formValidation()) {
       this.props.addProd(
         selectedProd
       ); /* function from main.js to manipulate selected products array state in main.js */
@@ -108,7 +112,7 @@ class AttPage extends React.Component {
 
           return (
             <form
-              onSubmit={(e) => this.handleSubmit(productInfo, e)}
+              onSubmit={(e) => this.handleSubmit(productInfo, product.inStock, e)}
               className={
                 isPDPorCart ? "" : "prod-att-form"
               } /* AttPage is used by many components so the class name depends on what component called it */

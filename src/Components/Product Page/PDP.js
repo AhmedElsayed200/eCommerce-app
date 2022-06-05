@@ -44,6 +44,7 @@ class PDP extends React.Component {
           if (error) return <p>Error! ${error.message}</p>;
 
           const { product } = data;
+          console.log(product, product.inStock)
 
           return (
             <div className="PDP-container">
@@ -64,12 +65,13 @@ class PDP extends React.Component {
                 {product.gallery.map((img, i) => (
                   <div
                     key={i}
-                    className="img-slider"
+                    className={"img-slider"}
                     style={{
                       display: this.state.imgIndex === i ? "flex" : "none",
                     }}
                   >
-                    <img src={img} alt={product.name} className="prod-img" />
+                    <img src={img} alt={product.name} className={product.inStock ? "prod-img" : "prod-img out-of-stock-img"} />
+                    {product.inStock ? null : <p className="out-of-stock-text">OUT OF STOCK</p>}
                   </div>
                 ))}
                 <button

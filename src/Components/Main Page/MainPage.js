@@ -15,7 +15,7 @@ class MainPage extends React.Component {
         symbol: "$",
         index: 0,
       } /* the chosen currency [CurrencyNavbar] */,
-      showCurrOverlay: false, /* show currency overlay [CurrencyNavbar] */
+      showCurrOverlay: false /* show currency overlay [CurrencyNavbar] */,
       diffCategory: false /* the just pressed category is differ from the privous one [PLP] */,
       showAtt: { id: "", show: false } /* from [PLP] */,
       showProd: { id: "", show: false } /* from [PLP] */,
@@ -66,17 +66,23 @@ class MainPage extends React.Component {
     const newProdStr = JSON.stringify(newProd);
     let selectedProducts = this.state.selectedProducts;
     let isExist = false;
+    let repeatedProdindx;
     /* compare between the "will be added product" with the already exist products */
-    selectedProducts.forEach((p) => {
+    selectedProducts.forEach((p, i) => {
       const q = p.quantity;
-      p.quantity = 1
-      if (newProdStr === JSON.stringify(p)) isExist = true;
+      p.quantity = 1;
+      if (newProdStr === JSON.stringify(p)) {
+        isExist = true;
+        repeatedProdindx = i;
+      }
       p.quantity = q; /* product saves its original quantity */
     });
     if (isExist) {
       alert(
-        "The product already exist in the cart"
+        "The product already exist in the cart, its quantity has been incremented"
       ); /* don't add already exist product */
+      selectedProducts[repeatedProdindx].quantity += 1;
+      this.setState({ selectedProducts: selectedProducts });
     } else {
       this.setState((prevState) => ({
         selectedProducts: [...prevState.selectedProducts, newProd],

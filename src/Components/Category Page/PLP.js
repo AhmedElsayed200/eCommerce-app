@@ -40,14 +40,14 @@ class PLP extends React.Component {
     this.props.changeDiffCategory();
   };
 
-  /* show attribute of a product if it is in the stock */
-  handleShowAtt = (id, inStock) => {
-    if (inStock) this.props.showAtt(id);
+  /* show attribute of a product in the stock */
+  handleShowAtt = (id) => {
+    this.props.showAtt(id);
   };
 
-  /* show product description page of a product if it is in the stock */
-  handleShowProd = (id, inStock) => {
-    if (inStock) this.props.showProd(id);
+  /* show product description page of a product */
+  handleShowProd = (id) => {
+    this.props.showProd(id);
   };
 
   render() {
@@ -105,7 +105,7 @@ class PLP extends React.Component {
                       src={products[i].gallery[0]}
                       alt={products[i].name}
                       onClick={(e) => {
-                        this.handleShowProd(products[i].id, products[i].inStock, e);
+                        this.handleShowProd(products[i].id, e);
                       }}
                     ></img>
                   ) : (
@@ -114,6 +114,9 @@ class PLP extends React.Component {
                         className="product-img out-of-stock-img"
                         src={products[i].gallery[0]}
                         alt={products[i].name}
+                        onClick={(e) => {
+                          this.handleShowProd(products[i].id, e);
+                        }}
                       ></img>
                       <p className="out-of-stock-text">OUT OF STOCK</p>
                     </>
@@ -121,7 +124,7 @@ class PLP extends React.Component {
                   <button
                     className="add-cart-btn-plp"
                     onClick={(e) =>
-                      this.handleShowAtt(products[i].id, products[i].inStock, e)
+                      this.handleShowAtt(products[i].id, e)
                     }
                   >
                     <img
@@ -161,7 +164,12 @@ class PLP extends React.Component {
                 {categName === "all" ? " Categories" : " Category"}
               </p>
               {/* map the showProducts array to show the products */}
-              {showProducts.map((product) => product)}
+              <div className="first-row">
+                {showProducts.map((product, i) => i <= 2 ? product : null)}
+              </div>
+              <div className="second-row">
+                {showProducts.map((product, i) => i > 2 ? product : null)}
+              </div>
               {/* next and previous page buttons */}
               <div id="changePageBtn">
                 <button
