@@ -1,4 +1,4 @@
-# E-commerce Scandiweb React Test website
+# E-commerce website
 
 ## Overview
 
