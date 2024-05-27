@@ -48,14 +48,5 @@ The dependencies used in this application with its version:
    3. Build the project: `npm run build`
    4. Start the project: `npm start`
 
-> The website is now working, hope you enjoy it 😃
+> The website is now working, I hope you enjoy it 😃
 
-## Tour in the website (See below videos)
-
-### Updated version &darr;
-
-<a href="https://youtu.be/XPlWgpl2aDs" target="_blank"><img src="src/images/website2.png" alt="Tour in the website" width="500px" height="300px" border="3px" /></a>
-
-### Older version &darr;
-
-<a href="https://youtu.be/Ql6-HwzI6cs" target="_blank"><img src="src/images/website.png" alt="Tour in the website" width="500px" height="300px" border="3px" /></a>
